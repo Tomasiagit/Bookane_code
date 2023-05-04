@@ -1,4 +1,5 @@
 import 'package:bookane/components/menuNavbar.dart';
+import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
 import 'package:bookane/views/books_page.dart';
@@ -31,20 +32,19 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        title: 'Bookane',
         theme: ThemeData(),
-        home: const InitPage(),
+        home: const Inicio(),
         routes: {
           InitPage.routeName: (context) => const InitPage(),
-          MenuNavBar.routeName:(context) => const MenuNavBar(),
-          HomePage.routeName:(context) => const HomePage(),
+          MenuNavBar.routeName: (context) => const MenuNavBar(),
+          HomePage.routeName: (context) => const HomePage(),
           BooksPage.routeName: (context) => const BooksPage(),
           ProfilePage.routeName: (context) => const ProfilePage(),
           LoginPage.routeName: (context) => const LoginPage(),
-       
           RecuperarUserPage.routeName: (context) => const RecuperarUserPage(),
           CadastrarPage.routeName: (context) => const CadastrarPage(),
-        
         },
       ),
     );

@@ -72,8 +72,17 @@ flutter:
    - assets/img_leitorb.png
    - assets/img_livro.png
    - assets/leitor.png
+   - assets/imagem1.png
+   - assets/imagem2.png
+   - assets/imagem3.png
   # - images/a_dot_ham.jpeg
-
+fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Bold.ttf
+        - asset: fonts/Poppins-Light.ttf
+        - asset: fonts/Poppins-Medium.ttf
+        - asset: fonts/Poppins-Regular.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
