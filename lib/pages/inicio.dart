@@ -1,5 +1,6 @@
 import 'package:bookane/pages/base.dart';
 import 'package:bookane/views/login_page.dart';
+import 'package:bookane/views/register_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -268,7 +269,15 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
             SizedBox(
               width: 200,
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+
+                     Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return const RegisterPage();
+                    }),
+                  );
+
+                },
                 // => Get.to(() => const UpdateProfileScreen()
                 style: OutlinedButton.styleFrom(
                   // backgroundColor: Color.fromARGB(255, 138, 133, 135),

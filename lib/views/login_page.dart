@@ -2,7 +2,7 @@ import 'package:bookane/provider.dart/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:bookane/views/books_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
-import 'package:bookane/views/cadastrar_page.dart';
+import 'package:bookane/views/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {

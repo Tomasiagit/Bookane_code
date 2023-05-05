@@ -1,6 +1,6 @@
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/reading_page.dart';
-import 'package:bookane/views/cadastrar_page.dart';
+import 'package:bookane/views/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -50,7 +50,7 @@ class _BooksPageState extends State<BooksPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CadastrarPage()),
+                            builder: (context) => const RegisterPage()),
                       );
                     }
                   })

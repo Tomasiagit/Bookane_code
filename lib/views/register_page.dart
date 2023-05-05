@@ -7,56 +7,53 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
-class CadastrarPage extends StatefulWidget {
-  static const String routeName = '/CadastrarPage';
+class RegisterPage extends StatefulWidget {
+  static const String routeName = '/RegisterPage';
 
-  const CadastrarPage({super.key});
+  const RegisterPage({super.key});
 
   @override
-  State<CadastrarPage> createState() => _CadastrarPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _CadastrarPageState extends State<CadastrarPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _nomeController = TextEditingController();
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
   final _repetirSenhaControler = TextEditingController();
-  late List<DropdownMenuItem<ListOfClass>> _classItems;
+  late List<DropdownMenuItem<ListOfClass>> _countryItems;
   late ListOfClass _selectedClass;
+  // late List<DropdownMenuItem<ListOfClass>> _classItems;
+  // late ListOfClass _selectedClass;
 
+  
+
+  @override
   void initState(){
-    List<ListOfClass> classes = ListOfClass.allClass;
-    _classItems = classes.map<DropdownMenuItem<ListOfClass>>(
-      (ListOfClass listofClass){
+    List<ListOfClass> countries = ListOfClass.allClass;
+    _countryItems = countries.map<DropdownMenuItem<ListOfClass>>(
+      (ListOfClass classOption) {
         return DropdownMenuItem<ListOfClass>(
-           value: listofClass,
-         child:Text(listofClass.classes),
-
+          value: classOption,
+          child: Text(classOption.classes),
         );
-      }
+      },
     ).toList();
-    _selectedClass = classes[0];
+    _selectedClass = countries[0];
      super.initState();
   }
 
 
   final _formkey = GlobalKey<FormState>();
  
-   Map<String, String> classes = <String, String>{
-    '1': '8-classe',
-    '2': '9-classe',
-    '3': '10-classe',
-    '4': '11-classe',
-    '6': '12-classe',
-  };
-
   @override
   Widget build(BuildContext context) {
     var widthSize = MediaQuery.of(context).size.width;
-   String selectedItem = classes.keys.last;
-    //String selectedItem = classes;
-
     return Scaffold(
+        appBar: AppBar(
+        backgroundColor: const Color(0xFF0C60A0),
+        title: const Text('Registrar'),
+      ),
       body: Form(
           key: _formkey,
           child: SizedBox.expand(
@@ -65,17 +62,7 @@ class _CadastrarPageState extends State<CadastrarPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  const Text(
-                    'Registrar',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Color.fromARGB(219, 7, 3, 72),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30),
-                  ),
+
                   const SizedBox(
                     height: 50,
                   ),
@@ -125,106 +112,29 @@ class _CadastrarPageState extends State<CadastrarPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child:
-                        //  child: DropdownButton<String? item>(
-                        //   isExpanded: true,
-                        //   value: _selectedClass,
-                        //   items: _classItems,
-                        //   onChanged: (e){
-                        //     setState(() {
-                        //       _selectedClass = item!
-                        //     });
-                        //   },)
-                        //
-                        DropdownButton<String>(
-                          value: selectedItem,
-                          onChanged: (String? value) {
-                            // This is called when the user selects an item.
-                            setState(() => selectedItem = value!);
-                          },
-                          selectedItemBuilder: (BuildContext context) {
-                            return classes.values.map<Widget>((String item) {
-                              // This is the widget that will be shown when you select an item.
-                              // Here custom text style, alignment and layout size can be applied
-                              // to selected item string.
-                              return Container(
-                                alignment: Alignment.centerLeft,
-                                constraints:
-                                    const BoxConstraints(minWidth: 100),
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              );
-                            }).toList();
-                          },
-                          items: classes.values
-                              .map<DropdownMenuItem<String>>((String item) {
-                            return DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(classes.toString()),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      // DropdownButton<String>(
-                      //   hint: const Text(
-                      //     'Selecione a sua classe de Frequencia',
-                      //     style: TextStyle(fontSize: 14),
-                      //   ),
-                      //   value: dropdownValue,
-                      //   elevation: 1,
-                      //   style: const TextStyle(
-                      //       color: Color.fromARGB(255, 65, 65, 66)),
-                      //   onChanged: (String? value) {
-                      //     // This is called when the user selects an item.
-                      //     setState(() {
-                      //       dropdownValue = value!;
-                      //     });
-                      //   },
-                      //   items: dropClasses
-                      //       .map<DropdownMenuItem<String>>((String value) {
-                      //     return DropdownMenuItem<String>(
-                      //       value: value,
-                      //       child: Text(value),
-                      //     );
-                      //   }).toList(),
-                      // ),
-                    ],
+                  Container(
+                   child:
+                      DropdownButton<ListOfClass>(
+        isExpanded: true,
+        underline: const SizedBox(),
+        //icon: SvgPicture.asset("assets/icons/dropdown.svg"),
+        value: _selectedClass,
+        items: _countryItems,
+        onChanged: (newValue) {
+          setState(() {
+            _selectedClass = newValue!;
+          });
+        },
+      ),
                   ),
 
-                  // Theme(
-                  //   data: Theme.of(context).copyWith(
-                  //     colorScheme: ThemeData().colorScheme.copyWith(
-                  //           primary: Color.fromARGB(219, 7, 3, 72),
-                  //         ),
-                  //   ),
-                  //   child: TextFormField(
-                  //     keyboardType: TextInputType.emailAddress,
-
-                  //     //obscureText: true,
-                  //     decoration: InputDecoration(
-                  //       border: OutlineInputBorder(),
-                  //       labelText: 'Classe',
-                  //       prefixIcon: Icon(
-                  //         Icons.email,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(
                     height: 20,
                   ),
                   Theme(
                     data: Theme.of(context).copyWith(
                       colorScheme: ThemeData().colorScheme.copyWith(
-                            primary: Color.fromARGB(219, 7, 3, 72),
+                            primary: const Color.fromARGB(219, 7, 3, 72),
                           ),
                     ),
                     child: TextFormField(
@@ -287,7 +197,7 @@ class _CadastrarPageState extends State<CadastrarPage> {
                                       .cadastrarFunction(
                                           _nomeController.text,
                                           _emailController.text,
-                                          selectedItem,
+                                          _selectedClass.toString(),
                                           _repetirSenhaControler.text)
                                       .then((value) {
                                     if (value) {
@@ -316,7 +226,7 @@ class _CadastrarPageState extends State<CadastrarPage> {
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    const Color.fromARGB(219, 7, 3, 72),
+                                    const Color(0xFF0C60A0),
                               ),
                               child: const Text(
                                 'Registrar',
@@ -370,3 +280,19 @@ class ListOfClass{
   ListOfClass('5', '12classe'),
  ];
 }
+
+// class CountryOption {
+//   final String key;
+//   final String fullName;
+
+//   CountryOption(this.key, this.fullName);
+
+//   static List<CountryOption> get allCountries => [
+//         CountryOption('nepal', 'Nepal'),
+//         CountryOption('india', 'India'),
+//         CountryOption('USA', 'United States'),
+//         CountryOption('denmark', 'Denmark'),
+//         CountryOption('uk', 'UK'),
+//         CountryOption('world', 'World Wide'),
+//       ];
+// }
