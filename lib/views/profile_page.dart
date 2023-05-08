@@ -19,8 +19,8 @@ class _ProfilePageState extends State<ProfilePage> {
  appBar: AppBar(
        // leading: IconButton(onPressed: () {}),
         centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(255, 63, 4, 30),
+        automaticallyImplyLeading: true,
+        backgroundColor: const Color(0xFF0C60A0),
         title:const  Text('Perfil', style: TextStyle(
           fontWeight: FontWeight.bold,
         )),

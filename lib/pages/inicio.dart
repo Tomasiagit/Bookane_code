@@ -1,4 +1,5 @@
 import 'package:bookane/pages/base.dart';
+import 'package:bookane/views/books_page.dart';
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/register_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -128,34 +129,44 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.black,
-                    ),
-                    child: Column(
-                      children: const [
-                        Text(
-                          '12ª',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            // fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                       Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return const BooksPage();
+                    }),
+                  );
+                      
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.black,
+                      ),
+                      child: Column(
+                        children: const [
+                          Text(
+                            '12ª',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              // fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Classe',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold,
+                          SizedBox(
+                            height: 10,
                           ),
-                        ),
-                      ],
+                          Text(
+                            'Classe',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(

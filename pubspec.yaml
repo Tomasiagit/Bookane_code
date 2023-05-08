@@ -75,6 +75,15 @@ flutter:
    - assets/imagem1.png
    - assets/imagem2.png
    - assets/imagem3.png
+   - assets/12-classe/Biologia12.jpg
+   - assets/12-classe/filosofia12.jpg
+   - assets/12-classe/fisica12.jpg
+   - assets/12-classe/geografia12.jpg
+   - assets/12-classe/matematica12.jpg
+   - assets/12-classe/portugues12.jpg
+   - assets/12-classe/quimica12.PNG
+
+
   # - images/a_dot_ham.jpeg
 fonts:
     - family: Poppins
