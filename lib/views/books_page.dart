@@ -65,12 +65,7 @@ class _BooksPageState extends State<BooksPage> {
                   // Tab(
                   //   text: "10-classe",
                   // ),
-                  // Tab(
-                  //   text: "9-classe",
-                  // ),
-                  // Tab(
-                  //   text: "8-classe",
-                  // )
+                  
                 ]),
               ),
             ),
