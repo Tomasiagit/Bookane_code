@@ -2,6 +2,7 @@ import 'package:bookane/components/menuNavbar.dart';
 import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
+import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/books_page.dart';
 import 'package:bookane/views/register_page.dart';
 import 'package:bookane/views/home_page.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<CadastrarProvider>(
           create: (context) => CadastrarProvider(),
+        ),
+         ChangeNotifierProvider<ProfileProvider>(
+          create: (context) => ProfileProvider(),
         ),
       ],
       child: MaterialApp(

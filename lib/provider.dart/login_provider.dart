@@ -25,7 +25,7 @@ class LoginProvider extends ChangeNotifier {
         headers: _headers);
 
     if (response.statusCode == 200) {
-      print('Response: $response');
+      print('Response: ${response.body}');
       return true;
     } else {
       print("something going wrong");

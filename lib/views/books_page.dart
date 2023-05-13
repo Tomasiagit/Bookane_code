@@ -66,101 +66,6 @@ class _BooksPageState extends State<BooksPage> {
           ),
           body: Padding(
             padding: const EdgeInsets.all(10.0),
-            // child: GridView(
-            //   scrollDirection: Axis.vertical,
-            //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //     crossAxisCount: 3,
-            //     crossAxisSpacing: 16,
-            //     mainAxisSpacing: 36,
-            //   ),
-            //   children: [
-            //     Padding(
-            //       padding: const EdgeInsets.all(10.0),
-            //       child: Column(
-            //         children: [
-            //           Image.asset(
-            //             'assets/12-classe/filosofia12.jpg',
-            //             height: 120,
-            //           ),
-            //           const SizedBox(
-            //             height: 2,
-            //           ),
-            //           const Text('Biologia')
-            //         ],
-            //       ),
-            //     ),
-            //     Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: Column(
-            //         children: [
-            //           Image.asset(
-            //             'assets/12-classe/fisica12.jpg',
-            //             height: 120,
-            //           ),
-            //           const SizedBox(
-            //             height: 5,
-            //           ),
-            //           const Text('Biologia')
-            //         ],
-            //       ),
-            //     ),
-            //     Column(
-            //       children: [
-            //         Image.asset(
-            //           'assets/12-classe/geografia12.jpg',
-            //           //   height: 120,
-            //           width: 100,
-            //         ),
-            //         const SizedBox(
-            //           height: 5,
-            //         ),
-            //         const Text('Biologia')
-            //       ],
-            //     ),
-            //     Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: Column(
-            //         children: [
-            //           Image.asset(
-            //             'assets/12-classe/matematica12.jpg',
-            //             height: 120,
-            //           ),
-            //           const SizedBox(
-            //             height: 5,
-            //           ),
-            //           const Text('Biologia')
-            //         ],
-            //       ),
-            //     ),
-            //     Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: Column(
-            //         children: [
-            //           Image.asset('assets/12-classe/portugues12.jpg',
-            //               height: 120),
-            //           const SizedBox(
-            //             height: 5,
-            //           ),
-            //           const Text('Biologia')
-            //         ],
-            //       ),
-            //     ),
-            //     SizedBox(
-            //       child: Column(
-            //         children: [
-            //           Image.asset(
-            //             'assets/12-classe/quimica12.PNG',
-            //             height: 120,
-            //           ),
-            //           const SizedBox(
-            //             height: 5,
-            //           ),
-            //           const Text('Biologia')
-            //         ],
-            //       ),
-            //     )
-            //   ],
-            // ),
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -171,6 +76,8 @@ class _BooksPageState extends State<BooksPage> {
               itemCount: 12,
               itemBuilder: (context, index) {
                 return const BookItem();
+                  
+                
               },
             ),
           ),
