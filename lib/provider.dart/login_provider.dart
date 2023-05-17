@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:bookane/api_controller/base_api_url.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginProvider extends ChangeNotifier {
   String? _token;
@@ -25,13 +27,24 @@ class LoginProvider extends ChangeNotifier {
         headers: _headers);
 
     if (response.statusCode == 200) {
+      var dataUSer = jsonDecode(response.body);
+      
       print('Response: ${response.body}');
+      print('\n Data USER***$dataUSer');
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+   
+        
+    var t = await prefs.setString("user", dataUSer['access_token']);
+      notifyListeners();
+      print('Response: Token:::::::: $t');
+
       return true;
     } else {
       print("something going wrong");
       return false;
 
-      //print(response);
+      
     }
   }
 }

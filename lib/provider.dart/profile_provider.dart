@@ -11,7 +11,8 @@ class ProfileProvider extends ChangeNotifier{
 
    Future<String> getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var tt = prefs.getString('access_token');
+    var tt = prefs.getString('user');
+    print('User:::$tt');
 
     return tt.toString();
     //return user['token'];
@@ -19,20 +20,26 @@ class ProfileProvider extends ChangeNotifier{
 
 
 
- Future <Profile>getProfile() async {
-    String? _token = await getToken();
-   var url = Uri.parse(BaseApiUrl.infoEstudanteApiUrl);
-      final response = await http.get(url, headers: {
+
+ Future<Profile>getProfile() async {
+    String? token = await getToken();
+    print("TOKEN:::$token");
+
+       var url = Uri.parse(BaseApiUrl.infoEstudanteApiUrl);
+       final response = await http.post(url, headers: {
         'Accept': 'application/json',
-        'Authorization': 'bearer $_token'
+        'Authorization': 'bearer $token'
       });
 
       if (response.statusCode == 200) {
-              print("RESPONSE:${response.body}");
+        print("RESPONSE:${response.body}");
+
+
         return Profile.fromJson(jsonDecode(response.body));
        
       } else {
-    
+        print("Failed to load Profile");
+       // return false;
          throw Exception('Failed to load album');
       }
     
