@@ -36,7 +36,25 @@ class _ProfilePageState extends State<ProfilePage> {
            
 
               if(snapshot.hasData){
+                 String classe = '';
                  var userData = snapshot.data!;
+
+                 if(userData.classId! == '1'){
+                  classe = '8-classe';
+
+                 } else if(userData.classId! == '2' ){
+                   classe = '9-classe';
+
+                 }else if(userData.classId! == '3'){
+                   classe = '10-classe';
+
+                 }else if(userData.classId! == '4'){
+                   classe = '11-classe';
+
+                 }else {
+                   classe = '12-classe';
+
+                 }
 
                  return Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
@@ -109,10 +127,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: ElevatedButton(
                       onPressed: (){},
                       // => Get.to(() => const UpdateProfileScreen()
+                     
                       
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF0C60A0), side: BorderSide.none, shape: const StadiumBorder()),
-                    child: Text(userData.classId!, style: TextStyle(color: Colors.white)),
+                    child: Text(classe,
+                    
+                     style: TextStyle(color: Colors.white)),
                     )
                     ),
                                 
