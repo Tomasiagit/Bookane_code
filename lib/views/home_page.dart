@@ -108,24 +108,29 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 100,
-                        width: 70,
-                        margin: const EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: Colors.black,
+                      InkWell(
+                        onTap: () {
+                          
+                        },
+                        child: Container(
+                          height: 100,
+                          width: 70,
+                          margin: const EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: Colors.black,
+                            ),
+                            child: Column(
+                              children:const [
+                                SizedBox(height: 25,),
+                                 Text('12',
+                                style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
+                                 Text('Classe',
+                                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
+                              ],
+                            ),
                           ),
-                          child: Column(
-                            children:const [
-                              SizedBox(height: 25,),
-                               Text('12',
-                              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
-                               Text('Classe',
-                              style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
-                            ],
-                          ),
-                        ),
+                      ),
                         const SizedBox(width: 10,),
                 
                         Container(

@@ -2,7 +2,7 @@ import 'package:bookane/provider.dart/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:bookane/views/books_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
-import 'package:bookane/views/cadastrar_page.dart';
+import 'package:bookane/views/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -36,6 +36,10 @@ class _LoginPageState extends State<LoginPage>
   Widget build(BuildContext context) {
     var widthSize = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0C60A0),
+        title: const Text('Entrar'),
+      ),
       body: Form(
           key: _formkey,
           child: SizedBox.expand(
@@ -51,7 +55,7 @@ class _LoginPageState extends State<LoginPage>
                     'Iniciar sessão',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Color.fromARGB(219, 7, 3, 72),
+                        color: Color(0xFF0C60A0),
                         fontWeight: FontWeight.bold,
                         fontSize: 30),
                   ),
@@ -61,7 +65,7 @@ class _LoginPageState extends State<LoginPage>
                   Theme(
                     data: Theme.of(context).copyWith(
                       colorScheme: ThemeData().colorScheme.copyWith(
-                            primary: Color.fromARGB(219, 7, 3, 72),
+                            primary: const Color(0xFF0C60A0),
                           ),
                     ),
                     child: TextFormField(
@@ -78,11 +82,14 @@ class _LoginPageState extends State<LoginPage>
                         return null;
                       },
                       decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Email',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                        ),
+                        labelText: 'E-mail',
                         prefixIcon: Icon(
                           Icons.email,
                         ),
+                        isDense: true,
                       ),
                     ),
                   ),
@@ -92,7 +99,7 @@ class _LoginPageState extends State<LoginPage>
                   Theme(
                     data: Theme.of(context).copyWith(
                       colorScheme: ThemeData().colorScheme.copyWith(
-                            primary: Color.fromARGB(219, 7, 3, 72),
+                            primary: const Color(0xFF0C60A0),
                           ),
                     ),
                     child: TextFormField(
@@ -100,26 +107,29 @@ class _LoginPageState extends State<LoginPage>
                       controller: _passwordController,
                       obscureText: false,
                       decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.key),
-                        labelText: 'Password',
-                      ),
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(40.0)),
+                          ),
+                          prefixIcon: Icon(Icons.key),
+                          labelText: 'Senha',
+                          isDense: true),
                       validator: (password) {
                         if (password == null || password.isEmpty) {
-                          return 'Digite a password';
+                          return 'Digite a sua senha';
                         }
                         return null;
                       },
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  // const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 50.0),
                     child: Column(
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 40),
-                          height: 50,
+                          // height: 50,
                           width: widthSize <= 500 ? widthSize : 400,
                           child: ElevatedButton(
                               onPressed: () {
@@ -139,26 +149,32 @@ class _LoginPageState extends State<LoginPage>
                                     } else {
                                       _passwordController.clear();
                                       ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content:
-                                            const Text('email ou senha errada'),
-                                        duration: const Duration(seconds: 3),
-                                        backgroundColor: Colors.redAccent,
-                                        action: SnackBarAction(
-                                          label: 'ok',
-                                          onPressed: () {},
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: const Text(
+                                              'email ou senha errada'),
+                                          duration: const Duration(seconds: 3),
+                                          backgroundColor: Colors.redAccent,
+                                          action: SnackBarAction(
+                                            label: 'ok',
+                                            onPressed: () {},
+                                          ),
                                         ),
-                                      ));
+                                      );
                                     }
                                   });
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromARGB(219, 7, 3, 72),
+                                backgroundColor: const Color(0xFF0C60A0),
+                                side: BorderSide.none,
+                                shape: const StadiumBorder(),
                               ),
                               child: const Text(
                                 'INICIAR',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
                               )),
                         ),
                         const SizedBox(

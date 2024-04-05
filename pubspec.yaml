@@ -39,6 +39,7 @@ dependencies:
   carousel_slider: ^4.2.1
   http: ^0.13.5
   provider: ^6.0.5
+  shared_preferences: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -72,8 +73,26 @@ flutter:
    - assets/img_leitorb.png
    - assets/img_livro.png
    - assets/leitor.png
-  # - images/a_dot_ham.jpeg
+   - assets/imagem1.png
+   - assets/imagem2.png
+   - assets/imagem3.png
+   - assets/12-classe/Biologia12.jpg
+   - assets/12-classe/filosofia12.jpg
+   - assets/12-classe/fisica12.jpg
+   - assets/12-classe/geografia12.jpg
+   - assets/12-classe/matematica12.jpg
+   - assets/12-classe/portugues12.jpg
+   - assets/12-classe/quimica12.PNG
 
+
+  # - images/a_dot_ham.jpeg
+fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Bold.ttf
+        - asset: fonts/Poppins-Light.ttf
+        - asset: fonts/Poppins-Medium.ttf
+        - asset: fonts/Poppins-Regular.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

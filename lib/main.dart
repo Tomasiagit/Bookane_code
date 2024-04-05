@@ -1,8 +1,10 @@
 import 'package:bookane/components/menuNavbar.dart';
+import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
+import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/books_page.dart';
-import 'package:bookane/views/cadastrar_page.dart';
+import 'package:bookane/views/register_page.dart';
 import 'package:bookane/views/home_page.dart';
 import 'package:bookane/views/init_page.dart';
 import 'package:bookane/views/login_page.dart';
@@ -29,22 +31,24 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CadastrarProvider>(
           create: (context) => CadastrarProvider(),
         ),
+         ChangeNotifierProvider<ProfileProvider>(
+          create: (context) => ProfileProvider(),
+        ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        title: 'Bookane',
         theme: ThemeData(),
-        home: const InitPage(),
+        home: const Inicio(),
         routes: {
           InitPage.routeName: (context) => const InitPage(),
-          MenuNavBar.routeName:(context) => const MenuNavBar(),
-          HomePage.routeName:(context) => const HomePage(),
+          MenuNavBar.routeName: (context) => const MenuNavBar(),
+          HomePage.routeName: (context) => const HomePage(),
           BooksPage.routeName: (context) => const BooksPage(),
           ProfilePage.routeName: (context) => const ProfilePage(),
           LoginPage.routeName: (context) => const LoginPage(),
-       
           RecuperarUserPage.routeName: (context) => const RecuperarUserPage(),
-          CadastrarPage.routeName: (context) => const CadastrarPage(),
-        
+       //   RegisterPage.routeName: (context) => const RegisterPage(),
         },
       ),
     );

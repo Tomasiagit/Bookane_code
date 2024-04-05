@@ -17,6 +17,10 @@ class RecuperarUserPageState extends State<RecuperarUserPage> {
   Widget build(BuildContext context) {
     var widthSize = MediaQuery.of(context).size.width;
     return Scaffold(
+        appBar: AppBar(
+        backgroundColor: const Color(0xFF0C60A0),
+        title: const Text('Recuperar conta'),
+      ),
       body: SizedBox.expand(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -24,15 +28,8 @@ class RecuperarUserPageState extends State<RecuperarUserPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: const EdgeInsets.all(28.0),
-                child: Text(
-                  'Recuperar conta',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Color.fromARGB(219, 7, 3, 72),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30),
-                ),
+                padding:  EdgeInsets.all(28.0),
+              
               ),
               const SizedBox(
                 height: 10,
@@ -78,7 +75,7 @@ class RecuperarUserPageState extends State<RecuperarUserPage> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(219, 7, 3, 72),
+                    backgroundColor: Color(0xFF0C60A0),
                   ),
                   child: const Text(
                     'Recuperar',
