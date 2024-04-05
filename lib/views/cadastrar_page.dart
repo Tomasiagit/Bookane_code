@@ -125,11 +125,11 @@ class _CadastrarPageState extends State<CadastrarPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child:
+                  // Row(
+                  //   children: [
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      //   child:
                         //  child: DropdownButton<String? item>(
                         //   isExpanded: true,
                         //   value: _selectedClass,
@@ -140,39 +140,39 @@ class _CadastrarPageState extends State<CadastrarPage> {
                         //     });
                         //   },)
                         //
-                        DropdownButton<String>(
-                          value: selectedItem,
-                          onChanged: (String? value) {
-                            // This is called when the user selects an item.
-                            setState(() => selectedItem = value!);
-                          },
-                          selectedItemBuilder: (BuildContext context) {
-                            return classes.values.map<Widget>((String item) {
-                              // This is the widget that will be shown when you select an item.
-                              // Here custom text style, alignment and layout size can be applied
-                              // to selected item string.
-                              return Container(
-                                alignment: Alignment.centerLeft,
-                                constraints:
-                                    const BoxConstraints(minWidth: 100),
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              );
-                            }).toList();
-                          },
-                          items: classes.values
-                              .map<DropdownMenuItem<String>>((String item) {
-                            return DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(classes.toString()),
-                            );
-                          }).toList(),
-                        ),
-                      ),
+                        // DropdownButton<String>(
+                        //   value: selectedItem,
+                        //   onChanged: (String? value) {
+                        //     // This is called when the user selects an item.
+                        //     setState(() => selectedItem = value!);
+                        //   },
+                        //   selectedItemBuilder: (BuildContext context) {
+                        //     return classes.values.map<Widget>((String item) {
+                        //       // This is the widget that will be shown when you select an item.
+                        //       // Here custom text style, alignment and layout size can be applied
+                        //       // to selected item string.
+                        //       return Container(
+                        //         alignment: Alignment.centerLeft,
+                        //         constraints:
+                        //             const BoxConstraints(minWidth: 100),
+                        //         child: Text(
+                        //           item,
+                        //           style: const TextStyle(
+                        //               color: Colors.blue,
+                        //               fontWeight: FontWeight.w600),
+                        //         ),
+                        //       );
+                        //     }).toList();
+                        //   },
+                        //   items: classes.values
+                        //       .map<DropdownMenuItem<String>>((String item) {
+                        //     return DropdownMenuItem<String>(
+                        //       value: item,
+                        //       child: Text(classes.toString()),
+                        //     );
+                        //   }).toList(),
+                        // ),
+                    //  ),
                       // DropdownButton<String>(
                       //   hint: const Text(
                       //     'Selecione a sua classe de Frequencia',
@@ -196,8 +196,8 @@ class _CadastrarPageState extends State<CadastrarPage> {
                       //     );
                       //   }).toList(),
                       // ),
-                    ],
-                  ),
+                  //   ],
+                  // ),
 
                   // Theme(
                   //   data: Theme.of(context).copyWith(
