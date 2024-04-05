@@ -40,6 +40,7 @@ dependencies:
   http: ^0.13.5
   provider: ^6.0.5
   shared_preferences: ^2.1.1
+  syncfusion_flutter_pdfviewer: ^20.4.54
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +84,8 @@ flutter:
    - assets/12-classe/matematica12.jpg
    - assets/12-classe/portugues12.jpg
    - assets/12-classe/quimica12.PNG
+   - assets/meuperfil2.jpeg
+   - assets/garotos.png
 
 
   # - images/a_dot_ham.jpeg

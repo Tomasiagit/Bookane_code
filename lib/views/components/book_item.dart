@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BookItem extends StatelessWidget {
-  const BookItem({super.key});
+   final String? pdfpath;
+  final String? imagepath;
+  const BookItem({super.key, this.imagepath, this.pdfpath});
 
   @override
   Widget build(BuildContext context) {
