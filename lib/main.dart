@@ -31,14 +31,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CadastrarProvider>(
           create: (context) => CadastrarProvider(),
         ),
-         ChangeNotifierProvider<ProfileProvider>(
+        ChangeNotifierProvider<ProfileProvider>(
           create: (context) => ProfileProvider(),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Bookane',
-        theme: ThemeData(),
+        theme: ThemeData(
+          fontFamily: 'Poppins',
+        ),
         home: const Inicio(),
         routes: {
           InitPage.routeName: (context) => const InitPage(),
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
           ProfilePage.routeName: (context) => const ProfilePage(),
           LoginPage.routeName: (context) => const LoginPage(),
           RecuperarUserPage.routeName: (context) => const RecuperarUserPage(),
-       //   RegisterPage.routeName: (context) => const RegisterPage(),
+          //   RegisterPage.routeName: (context) => const RegisterPage(),
         },
       ),
     );

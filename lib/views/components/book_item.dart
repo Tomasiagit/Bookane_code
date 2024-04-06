@@ -1,37 +1,55 @@
+import 'package:bookane/views/reading_page.dart';
 import 'package:flutter/material.dart';
 
 class BookItem extends StatelessWidget {
-   final String? pdfpath;
-  final String? imagepath;
-  const BookItem({super.key, this.imagepath, this.pdfpath});
+  final String pdfpath;
+  final String imagepath;
+  final String bookTitle;
+  const BookItem({
+    super.key,
+    required this.imagepath,
+    required this.pdfpath,
+    required this.bookTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Image.asset(
-                  'assets/12-classe/filosofia12.jpg',
-                ),
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 3,
+        right: 3,
+      ),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ReadingPage(
+                pdfPath: 'assets/filosofia12.pdf',
+                //  pdfPath: pdfpath
               ),
-              const SizedBox(
-                height: 5,
+            ),
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Image.asset(
+                imagepath,
+                fit: BoxFit.cover,
+                // width: double.infinity,
               ),
-              const Text(
-                'Biologia',
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 2,
               ),
-            ],
-          ),
+              child: Text(
+                bookTitle,
+              ),
+            ),
+          ],
         ),
       ),
     );
