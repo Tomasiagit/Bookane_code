@@ -1,6 +1,6 @@
 import 'package:bookane/components/menuNavbar.dart';
-import 'package:bookane/views/books_page.dart';
-import 'package:bookane/views/login_page.dart';
+// import 'package:bookane/views/books_page.dart';
+// import 'package:bookane/views/login_page.dart';
 import 'package:flutter/material.dart';
 
 class InitPage extends StatefulWidget {

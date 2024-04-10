@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
+//import 'package:flutter/src/widgets/container.dart';
 
 class RecuperarUserPage extends StatefulWidget {
   static const String routeName = '/RecuperarUserPage';
@@ -11,7 +11,7 @@ class RecuperarUserPage extends StatefulWidget {
 
 class RecuperarUserPageState extends State<RecuperarUserPage> {
   final _emailController = TextEditingController();
-  final _formkey = GlobalKey<FormState>();
+  //final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

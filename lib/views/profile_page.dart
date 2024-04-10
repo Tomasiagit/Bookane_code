@@ -1,9 +1,9 @@
-import 'package:bookane/provider.dart/profile_provider.dart';
+//import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/subscricao_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   static const String routeName = '/ProfilePage';

@@ -4,7 +4,7 @@ import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
 import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/books_page.dart';
-import 'package:bookane/views/register_page.dart';
+//import 'package:bookane/views/register_page.dart';
 import 'package:bookane/views/home_page.dart';
 import 'package:bookane/views/init_page.dart';
 import 'package:bookane/views/login_page.dart';

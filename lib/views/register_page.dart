@@ -1,7 +1,7 @@
 import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
