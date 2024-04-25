@@ -5,7 +5,8 @@ import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
 import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/books_page.dart';
-//import 'package:bookane/views/register_page.dart';
+//import 'package:bookane
+///views/register_page.dart';
 import 'package:bookane/views/home_page.dart';
 import 'package:bookane/views/init_page.dart';
 import 'package:bookane/views/login_page.dart';
@@ -13,10 +14,11 @@ import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
-void main()async {
-    WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ProfileProvider(),
         ),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Bookane',
         theme: ThemeData(
@@ -53,7 +55,7 @@ class MyApp extends StatelessWidget {
           InitPage.routeName: (context) => const InitPage(),
           MenuNavBar.routeName: (context) => const MenuNavBar(),
           HomePage.routeName: (context) => const HomePage(),
-          BooksPage.routeName: (context) => const BooksPage(),
+          BooksPage.routeName: (context) => const BooksPage(grade: "12classe"),
           ProfilePage.routeName: (context) => const ProfilePage(),
           LoginPage.routeName: (context) => const LoginPage(),
           RecuperarUserPage.routeName: (context) => const RecuperarUserPage(),

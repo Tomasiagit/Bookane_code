@@ -1,16 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:bookane/models/book.dart';
 import 'package:bookane/views/reading_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class BookItem extends StatelessWidget {
-  final String pdfpath;
-  final String imagepath;
-  final String bookTitle;
-  const BookItem({
-    super.key,
-    required this.imagepath,
-    required this.pdfpath,
-    required this.bookTitle,
-  });
+  final Book book;
+  const BookItem({super.key, required this.book});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +21,8 @@ class BookItem extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const ReadingPage(
-                pdfPath: 'assets/filosofia12.pdf',
+              builder: (context) => ReadingPage(
+                pdfPath: book.bookPath,
                 //  pdfPath: pdfpath
               ),
             ),
@@ -35,18 +32,23 @@ class BookItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: Image.asset(
-                imagepath,
-                fit: BoxFit.cover,
-                // width: double.infinity,
+                child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              // width: double.infinity,
+              imageUrl: book.bookImage.toString(),
+              placeholder: (context, url) => Center(
+                child: CircularProgressIndicator(
+                  color: Color(0xFF0C60A0),
+                ),
               ),
-            ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            )),
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 2,
               ),
               child: Text(
-                bookTitle,
+                book.bookName.toString(),
               ),
             ),
           ],

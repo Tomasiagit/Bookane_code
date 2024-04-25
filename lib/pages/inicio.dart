@@ -1,9 +1,11 @@
 import 'package:bookane/pages/base.dart';
+import 'package:bookane/provider.dart/books_controller.dart';
 import 'package:bookane/views/books_page.dart';
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/register_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Inicio extends StatefulWidget {
   static const String routeName = '/Inicio';
@@ -15,11 +17,13 @@ class Inicio extends StatefulWidget {
 
 class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  final bookController = Get.put(BooksController());
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _controller = AnimationController(vsync: this);
+    bookController.getAllBooks("12classe");
   }
 
   @override
@@ -131,12 +135,13 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 children: [
                   InkWell(
                     onTap: () {
-                       Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) {
-                      return const BooksPage();
-                    }),
-                  );
-                      
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) {
+                          return const BooksPage(
+                            grade: "12classe",
+                          );
+                        }),
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(20),
@@ -172,67 +177,89 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                   const SizedBox(
                     width: 10,
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.black,
-                    ),
-                    child: Column(
-                      children: const [
-                        Text(
-                          '11ª',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            // fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) {
+                          return const BooksPage(
+                            grade: "11classe",
+                          );
+                        }),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.black,
+                      ),
+                      child: Column(
+                        children: const [
+                          Text(
+                            '11ª',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              // fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Classe',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold,
+                          SizedBox(
+                            height: 10,
                           ),
-                        ),
-                      ],
+                          Text(
+                            'Classe',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
                     width: 10,
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.black,
-                    ),
-                    child: Column(
-                      children: const [
-                        Text(
-                          '10ª',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            // fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) {
+                          return const BooksPage(
+                            grade: "10classe",
+                          );
+                        }),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.black,
+                      ),
+                      child: Column(
+                        children: const [
+                          Text(
+                            '10ª',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              // fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Classe',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold,
+                          SizedBox(
+                            height: 10,
                           ),
-                        ),
-                      ],
+                          Text(
+                            'Classe',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -281,13 +308,11 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
               width: 200,
               child: OutlinedButton(
                 onPressed: () {
-
                   //    Navigator.of(context).push(
                   //   MaterialPageRoute(builder: (context) {
                   //     return const RegisterPage();
                   //   }),
                   // );
-
                 },
                 // => Get.to(() => const UpdateProfileScreen()
                 style: OutlinedButton.styleFrom(

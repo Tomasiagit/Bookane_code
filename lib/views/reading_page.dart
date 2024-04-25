@@ -18,15 +18,15 @@ class _ReadingPageState extends State<ReadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Foco...",
-        style: TextStyle(
-          color: Colors.white
-        ),),
+        title: Text(
+          "Foco...",
+          style: TextStyle(color: Colors.white),
+        ),
         automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: SfPdfViewer.asset('${widget.pdfPath}'),
+      body: SfPdfViewer.network('${widget.pdfPath}'),
       //Stack(
       //    children: <Widget>[
       //     PDFView(
