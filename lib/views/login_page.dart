@@ -1,3 +1,4 @@
+import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:bookane/views/books_page.dart';
@@ -16,6 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
@@ -35,6 +37,7 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     var widthSize = MediaQuery.of(context).size.width;
+    //private FirebaseAuth mAuth;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF0C60A0),
@@ -134,35 +137,38 @@ class _LoginPageState extends State<LoginPage>
                           child: ElevatedButton(
                               onPressed: () {
                                 if (_formkey.currentState!.validate()) {
-                                  Provider.of<LoginProvider>(context,
-                                          listen: false)
-                                      .loginFunction(
-                                          _emailController.text.toString(),
-                                          _passwordController.text.toString())
-                                      .then((value) {
-                                    if (value) {
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const BooksPage()));
-                                    } else {
-                                      _passwordController.clear();
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: const Text(
-                                              'email ou senha errada'),
-                                          duration: const Duration(seconds: 3),
-                                          backgroundColor: Colors.redAccent,
-                                          action: SnackBarAction(
-                                            label: 'ok',
-                                            onPressed: () {},
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  });
+                                  _firebaseAuthService.authentication(
+                                      _emailController.text.toString(),
+                                      _passwordController.text.toString());
+                                  // Provider.of<LoginProvider>(context,
+                                  //         listen: false)
+                                  //     .loginFunction(
+                                  //         _emailController.text.toString(),
+                                  //         _passwordController.text.toString())
+                                  //     .then((value) {
+                                  //   if (value) {
+                                  //     Navigator.pushReplacement(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (context) =>
+                                  //                 const BooksPage()));
+                                  //   } else {
+                                  //     _passwordController.clear();
+                                  //     ScaffoldMessenger.of(context)
+                                  //         .showSnackBar(
+                                  //       SnackBar(
+                                  //         content: const Text(
+                                  //             'email ou senha errada'),
+                                  //         duration: const Duration(seconds: 3),
+                                  //         backgroundColor: Colors.redAccent,
+                                  //         action: SnackBarAction(
+                                  //           label: 'ok',
+                                  //           onPressed: () {},
+                                  //         ),
+                                  //       ),
+                                  //     );
+                                  //   }
+                                  // });
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -174,6 +180,7 @@ class _LoginPageState extends State<LoginPage>
                                 'INICIAR',
                                 style: TextStyle(
                                   fontSize: 16,
+                                  color: Colors.white
                                 ),
                               )),
                         ),

@@ -1,3 +1,4 @@
+import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
@@ -21,6 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
   final _repetirSenhaControler = TextEditingController();
+  final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   late List<DropdownMenuItem<ListOfClass>> _countryItems;
   late ListOfClass _selectedClass;
   // late List<DropdownMenuItem<ListOfClass>> _classItems;
@@ -189,36 +191,40 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: ElevatedButton(
                               onPressed: () {
                                 if (_formkey.currentState!.validate()) {
-                                  Provider.of<CadastrarProvider>(context,
-                                          listen: false)
-                                      .cadastrarFunction(
-                                          _nomeController.text,
-                                          _emailController.text,
-                                          _selectedClass.toString(),
-                                          _repetirSenhaControler.text)
-                                      .then((value) {
-                                    if (value) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ProfilePage()),
-                                      );
-                                    } else {
-                                      _senhaController.clear();
-                                      _repetirSenhaControler.clear();
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: const Text('Erro ao registar'),
-                                        duration: const Duration(seconds: 3),
-                                        backgroundColor: Colors.redAccent,
-                                        action: SnackBarAction(
-                                          label: 'ok',
-                                          onPressed: () {},
-                                        ),
-                                      ));
-                                    }
-                                  });
+                                  // Provider.of<CadastrarProvider>(context,
+                                  //         listen: false)
+                                  //     .cadastrarFunction(
+                                  //         _nomeController.text,
+                                  //         _emailController.text,
+                                  //         _selectedClass.toString(),
+                                  //         _repetirSenhaControler.text)
+                                  _firebaseAuthService.createUser(
+                                      _nomeController.text,
+                                      _emailController.text,
+                                      _repetirSenhaControler.text);
+                                  //     .then((value) {
+                                  //   if (value) {
+                                  //     Navigator.push(
+                                  //       context,
+                                  //       MaterialPageRoute(
+                                  //           builder: (context) =>
+                                  //               const ProfilePage()),
+                                  //     );
+                                  //   } else {
+                                  //     _senhaController.clear();
+                                  //     _repetirSenhaControler.clear();
+                                  //     ScaffoldMessenger.of(context)
+                                  //         .showSnackBar(SnackBar(
+                                  //       content: const Text('Erro ao registar'),
+                                  //       duration: const Duration(seconds: 3),
+                                  //       backgroundColor: Colors.redAccent,
+                                  //       action: SnackBarAction(
+                                  //         label: 'ok',
+                                  //         onPressed: () {},
+                                  //       ),
+                                  //     ));
+                                  //   }
+                                  // });
                                 }
                               },
                               style: ElevatedButton.styleFrom(

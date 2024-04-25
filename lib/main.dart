@@ -1,4 +1,5 @@
 import 'package:bookane/components/menuNavbar.dart';
+import 'package:bookane/firebase_options.dart';
 import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
@@ -10,10 +11,16 @@ import 'package:bookane/views/init_page.dart';
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main()async {
+    WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
