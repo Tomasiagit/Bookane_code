@@ -26,38 +26,6 @@ class _BooksPageState extends State<BooksPage> {
     bookController.getAllBooks(widget.grade);
   }
 
-  // List<BookItem> books = const [
-  //   BookItem(
-  //     imagepath: 'assets/12-classe/filosofia12.jpg',
-  //     pdfpath: 'assets/filosofia12.pdf',
-  //     bookTitle: 'Filosofia',
-  //   ),
-  //   BookItem(
-  //     imagepath: 'assets/12-classe/fisica12.jpg',
-  //     pdfpath: 'assets/filosofia12.pdf',
-  //     bookTitle: 'Fisica',
-  //   ),
-  //   BookItem(
-  //     imagepath: 'assets/12-classe/geografia12.jpg',
-  //     pdfpath: 'assets/filosofia12.pdf',
-  //     bookTitle: 'Geografia',
-  //   ),
-  //   BookItem(
-  //     imagepath: 'assets/12-classe/matematica12.jpg',
-  //     pdfpath: 'assets/filosofia12.pdf',
-  //     bookTitle: 'Matematica',
-  //   ),
-  //   BookItem(
-  //     imagepath: 'assets/12-classe/portugues12.jpg',
-  //     pdfpath: 'assets/filosofia12.pdf',
-  //     bookTitle: 'Portugues',
-  //   ),
-  //   BookItem(
-  //     imagepath: 'assets/12-classe/quimica12.PNG',
-  //     pdfpath: 'assets/filosofia12.pdf',
-  //     bookTitle: 'Quimica',
-  //   ),
-  // ];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -77,36 +45,20 @@ class _BooksPageState extends State<BooksPage> {
             centerTitle: true,
             backgroundColor: const Color(0xFF0C60A0),
             actions: [
-              PopupMenuButton(
-                  color: Colors.white,
-                  // color: Colors.white,
-                  itemBuilder: (context) {
-                    return [
-                      const PopupMenuItem<int>(
-                        value: 0,
-                        child: Text("Perfil"),
-                      ),
-                      const PopupMenuItem<int>(
-                        value: 1,
-                        child: Text("Cadrastar-se"),
-                      ),
-                    ];
-                  },
-                  onSelected: (value) {
-                    if (value == 0) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfilePage()),
-                      );
-                    } else if (value == 1) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterPage()),
-                      );
-                    }
-                  })
+
+              IconButton(
+                icon: Icon(Icons.account_circle,
+                color: Colors.white,), // User icon
+                onPressed: () {
+                  // Action when icon is pressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()),
+                  );
+                },
+              ),
+
             ],
             bottom: const TabBar(
               labelColor: Color.fromARGB(255, 254, 207, 0),

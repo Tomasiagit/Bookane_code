@@ -1,3 +1,5 @@
+import 'package:bookane/views/components/pacotes.dart';
+import 'package:bookane/views/subscricao_page.dart';
 import 'package:flutter/material.dart';
 
 class TipoSubcricao extends StatefulWidget {
@@ -13,6 +15,9 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF0C60A0),
+          iconTheme: const IconThemeData(
+            color: Colors.white, //change your color here
+          ),
           title: const Text(
             'Pacotes',
             style: TextStyle(color: Colors.white, fontSize: 18),
@@ -25,7 +30,7 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
               'assets/garotos.png',
               height: 150,
             ),
-            Padding(
+         const Padding(
               padding: const EdgeInsets.all(18.0),
               child: Column(
                 children: [
@@ -37,214 +42,30 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               textAlign: TextAlign.center,
               "Uma classe",
             ),
-            Row(
+            const Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    //color: Colors.white70,
-                    child: Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  '1 Semestre',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '200Mts',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.yellow),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    //color: Colors.white70,
-                    child: Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'Anual',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '700Mts',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.yellow),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
+                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
               ],
             ),
-            SizedBox(
+           const SizedBox(
               height: 10,
             ),
-            Text(
+           const  Text(
               textAlign: TextAlign.center,
               "Mais de uma Classe",
             ),
-            Row(
+            const Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    //color: Colors.white70,
-                    child: Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  '1 semestre',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '400Mts',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.yellow),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    //color: Colors.white70,
-                    child: Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  '1 Anual',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '1000Mts',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.yellow),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
+                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
               ],
             ),
           ]),

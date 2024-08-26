@@ -1,6 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 //import 'package:flutter/src/widgets/placeholder.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,46 +26,52 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 20,
             ),
-            CarouselSlider(
-              items: [
-                Container(
-                    margin: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: const DecorationImage(
-                          image: AssetImage('assets/img_leitorb.png'),
-                          fit: BoxFit.fitHeight,
-                        ))),
-                Container(
-                    margin: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: const DecorationImage(
-                          image: AssetImage(
-                            'assets/img_livro.png',
-                          ),
-                          fit: BoxFit.fitHeight,
-                        ))),
-                Container(
-                    margin: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        image: const DecorationImage(
-                          image: AssetImage('assets/leitor.png'),
-                          fit: BoxFit.fitHeight,
-                        ))),
-              ],
-              options: CarouselOptions(
-                height: 180,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 16 / 9,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                viewportFraction: 0.8,
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-              ),
-            ),
+        PageView(
+          children: [
+            // seus itens
+          ],
+        ),
+
+        // CarouselSlider(
+            //   items: [
+            //     Container(
+            //         margin: const EdgeInsets.all(6.0),
+            //         decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(8.0),
+            //             image: const DecorationImage(
+            //               image: AssetImage('assets/img_leitorb.png'),
+            //               fit: BoxFit.fitHeight,
+            //             ))),
+            //     Container(
+            //         margin: const EdgeInsets.all(6.0),
+            //         decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(8.0),
+            //             image: const DecorationImage(
+            //               image: AssetImage(
+            //                 'assets/img_livro.png',
+            //               ),
+            //               fit: BoxFit.fitHeight,
+            //             ))),
+            //     Container(
+            //         margin: const EdgeInsets.all(6.0),
+            //         decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(8.0),
+            //             image: const DecorationImage(
+            //               image: AssetImage('assets/leitor.png'),
+            //               fit: BoxFit.fitHeight,
+            //             ))),
+            //   ],
+            //   options: CarouselOptions(
+            //     height: 180,
+            //     enlargeCenterPage: true,
+            //     autoPlay: true,
+            //     aspectRatio: 16 / 9,
+            //     autoPlayCurve: Curves.fastOutSlowIn,
+            //     enableInfiniteScroll: true,
+            //     viewportFraction: 0.8,
+            //     autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            //   ),
+            // ),
             const SizedBox(
               height: 10,
             ),
@@ -223,7 +228,9 @@ class _HomePageState extends State<HomePage> {
                   fontSize: 14,
                 )),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+
+              },
               // => Get.to(() => const UpdateProfileScreen()
 
               style: ElevatedButton.styleFrom(

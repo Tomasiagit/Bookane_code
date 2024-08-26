@@ -19,7 +19,12 @@ class RecuperarUserPageState extends State<RecuperarUserPage> {
     return Scaffold(
         appBar: AppBar(
         backgroundColor: const Color(0xFF0C60A0),
-        title: const Text('Recuperar conta'),
+            iconTheme: IconThemeData(
+              color: Colors.white, //change your color here
+            ),
+        title: const Text('Recuperar conta',
+            style:
+            TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
       ),
       body: SizedBox.expand(
         child: Padding(
@@ -79,6 +84,8 @@ class RecuperarUserPageState extends State<RecuperarUserPage> {
                   ),
                   child: const Text(
                     'Recuperar',
+                      style:
+                      TextStyle(fontWeight: FontWeight.bold, color: Colors.white)
                   ),
                 ),
               ),

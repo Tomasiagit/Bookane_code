@@ -14,6 +14,9 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF0C60A0),
+          iconTheme: IconThemeData(
+            color: Colors.white, //change your color here
+          ),
           title: const Text(
             'Metodos de Subscricao',
             style: TextStyle(color: Colors.white, fontSize: 18),
@@ -52,8 +55,22 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                     child: Container(
                       height: 140,
                       width: 140,
+                      decoration: BoxDecoration(
+                        color: Colors.red, // Cor de fundo do Container
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Raio da borda do Container
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                Colors.grey.withOpacity(0.5), // Cor da sombra
+                            spreadRadius: 5, // Espalhamento da sombra
+                            blurRadius: 7, // Raio do desfoque da sombra
+                            offset: Offset(0, 3), // Deslocamento da sombra
+                          ),
+                        ],
+                      ),
                       //color: Colors.white70,
-                      child: Column(
+                      child: const Column(
                         //   crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -73,20 +90,6 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                           )
                         ],
                       ),
-                      decoration: BoxDecoration(
-                        color: Colors.red, // Cor de fundo do Container
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Raio da borda do Container
-                        boxShadow: [
-                          BoxShadow(
-                            color:
-                                Colors.grey.withOpacity(0.5), // Cor da sombra
-                            spreadRadius: 5, // Espalhamento da sombra
-                            blurRadius: 7, // Raio do desfoque da sombra
-                            offset: Offset(0, 3), // Deslocamento da sombra
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 ),
@@ -95,8 +98,22 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                   child: Container(
                     height: 140,
                     width: 140,
+                    decoration: BoxDecoration(
+                      color:
+                          Colors.deepOrangeAccent, // Cor de fundo do Container
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Raio da borda do Container
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
+                          spreadRadius: 5, // Espalhamento da sombra
+                          blurRadius: 7, // Raio do desfoque da sombra
+                          offset: Offset(0, 3), // Deslocamento da sombra
+                        ),
+                      ],
+                    ),
                     //color: Colors.white70,
-                    child: Column(
+                    child: const Column(
                       //   crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -115,9 +132,22 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                         )
                       ],
                     ),
+                  ),
+                ),
+              ],
+            ),
+           const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 140,
+                    width: 140,
                     decoration: BoxDecoration(
-                      color:
-                          Colors.deepOrangeAccent, // Cor de fundo do Container
+                      color: Colors.blueAccent, // Cor de fundo do Container
                       borderRadius: BorderRadius.circular(
                           10.0), // Raio da borda do Container
                       boxShadow: [
@@ -129,22 +159,8 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                         ),
                       ],
                     ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
                     //color: Colors.white70,
-                    child: Column(
+                    child: const Column(
                       //   crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -161,19 +177,6 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                             ),
                           ],
                         )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
                       ],
                     ),
                   ),

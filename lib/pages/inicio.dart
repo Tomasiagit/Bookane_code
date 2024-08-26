@@ -3,7 +3,6 @@ import 'package:bookane/provider.dart/books_controller.dart';
 import 'package:bookane/views/books_page.dart';
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/register_page.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,20 +15,32 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+//  late AnimationController _controller;
+  late PageController _pageViewController;
+  late TabController _tabController;
+  int _currentPageIndex = 0;
   final bookController = Get.put(BooksController());
+
+  @override
+  void initState() {
+    super.initState();
+    _pageViewController = PageController();
+    _tabController = TabController(length: 3, vsync: this);
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _controller = AnimationController(vsync: this);
+  //  _controller = AnimationController(vsync: this);
     bookController.getAllBooks("12classe");
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+   // _controller.dispose();
     super.dispose();
+    _pageViewController.dispose();
+    _tabController.dispose();
   }
 
   @override
@@ -44,56 +55,101 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
             const SizedBox(
               height: 20,
             ),
-            CarouselSlider(
-              items: [
-                Container(
-                  margin: const EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/imagem1.png'),
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: const DecorationImage(
-                      image: AssetImage(
-                        'assets/imagem2.png',
-                      ),
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
-                ),
-                Container(
-                    margin: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
+            // CarouselSlider(
+            //   items: [
+            //     Container(
+            //       margin: const EdgeInsets.all(6.0),
+            //       decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(8.0),
+            //         image: const DecorationImage(
+            //           image: AssetImage('assets/imagem1.png'),
+            //           fit: BoxFit.fitHeight,
+            //         ),
+            //       ),
+            //     ),
+            //     Container(
+            //       margin: const EdgeInsets.all(6.0),
+            //       decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(8.0),
+            //         image: const DecorationImage(
+            //           image: AssetImage(
+            //             'assets/imagem2.png',
+            //           ),
+            //           fit: BoxFit.fitHeight,
+            //         ),
+            //       ),
+            //     ),
+            //     Container(
+            //         margin: const EdgeInsets.all(6.0),
+            //         decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(8.0),
+            //             image: const DecorationImage(
+            //               image: AssetImage('assets/imagem3.png'),
+            //               fit: BoxFit.fitHeight,
+            //             ))),
+            //   ],
+            //   options: CarouselOptions(
+            //     height: 190,
+            //     aspectRatio: 16 / 9,
+            //     viewportFraction: 0.8,
+            //     initialPage: 0,
+            //     enableInfiniteScroll: true,
+            //     reverse: false,
+            //     autoPlay: true,
+            //     autoPlayInterval: Duration(seconds: 3),
+            //     autoPlayAnimationDuration: Duration(milliseconds: 800),
+            //     autoPlayCurve: Curves.fastOutSlowIn,
+            //     enlargeCenterPage: true,
+            //     enlargeFactor: 0.3,
+            //     scrollDirection: Axis.horizontal,
+            //   ),
+            // ),
+        Expanded(
+
+          child: SizedBox(
+            height: 200.0,
+            child: PageView(
+                controller: _pageViewController,
+                onPageChanged: _handlePageViewChanged,
+              children: [
+
+                    Container(
+                      margin: const EdgeInsets.all(6.0),
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                         image: const DecorationImage(
-                          image: AssetImage('assets/imagem3.png'),
+                          image: AssetImage('assets/imagem1.png'),
                           fit: BoxFit.fitHeight,
-                        ))),
-              ],
-              options: CarouselOptions(
-                height: 190,
-                aspectRatio: 16 / 9,
-                viewportFraction: 0.8,
-                initialPage: 0,
-                enableInfiniteScroll: true,
-                reverse: false,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enlargeCenterPage: true,
-                enlargeFactor: 0.3,
-                scrollDirection: Axis.horizontal,
-              ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(6.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        image: const DecorationImage(
+                          image: AssetImage(
+                            'assets/imagem2.png',
+                          ),
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    ),
+                    Container(
+                        margin: const EdgeInsets.all(6.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            image: const DecorationImage(
+                              image: AssetImage('assets/imagem3.png'),
+                              fit: BoxFit.fitHeight,
+                            ))),
+                  ]
+
             ),
-            const SizedBox(
+          ),
+        ),
+
+        const SizedBox(
               height: 10,
             ),
             const Text(
@@ -308,11 +364,11 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
               width: 200,
               child: OutlinedButton(
                 onPressed: () {
-                  //    Navigator.of(context).push(
-                  //   MaterialPageRoute(builder: (context) {
-                  //     return const RegisterPage();
-                  //   }),
-                  // );
+                     Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return const RegisterPage();
+                    }),
+                  );
                 },
                 // => Get.to(() => const UpdateProfileScreen()
                 style: OutlinedButton.styleFrom(
@@ -335,4 +391,25 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
       resizeToAvoidBottomInset: false,
     );
   }
+
+  void _handlePageViewChanged(int currentPageIndex) {
+    // if (!_isOnDesktopAndWeb) {
+    //   return;
+    // }
+    _tabController.index = currentPageIndex;
+    setState(() {
+      _currentPageIndex = currentPageIndex;
+    });
+  }
+
+  void _updateCurrentPageIndex(int index) {
+    _tabController.index = index;
+    _pageViewController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
 }
+
+

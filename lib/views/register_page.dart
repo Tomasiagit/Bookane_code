@@ -51,6 +51,9 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF0C60A0),
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
         title: const Text(
           'Registar',
           style: TextStyle(color: Colors.white),
@@ -200,9 +203,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                   //         _repetirSenhaControler.text)
                                   _firebaseAuthService.createUser(
                                       _nomeController.text,
+                                      _selectedClass.toString(),
+
                                       _emailController.text,
-                                      _repetirSenhaControler.text);
-                                  //     .then((value) {
+                                      _repetirSenhaControler.text)
+                                      .then((value) =>   Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const ProfilePage())));
+                                  // {
                                   //   if (value) {
                                   //     Navigator.push(
                                   //       context,

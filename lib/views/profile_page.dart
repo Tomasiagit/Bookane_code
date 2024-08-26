@@ -1,5 +1,6 @@
 //import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/subscricao_page.dart';
+import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -25,6 +26,9 @@ class _ProfilePageState extends State<ProfilePage> {
           centerTitle: true,
           automaticallyImplyLeading: true,
           backgroundColor: const Color(0xFF0C60A0),
+            iconTheme: IconThemeData(
+              color: Colors.white, //change your color here
+            ),
           title: const Text('Perfil',
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
@@ -105,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: ListTile(
                     //   leading: Icon(Icons.person),
                     title: Text(
-                      'Subcricao',
+                      'Subscrição',
                     ),
                     subtitle: Text(
                       '6meses',
@@ -123,14 +127,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SubscricaoPage()));
+                            builder: (context) => const TipoSubcricao()));
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     backgroundColor: const Color(0xFF0C60A0),
                   ),
                   child: Text(
-                    'Pagar Subscricao',
+                    'Pagar Subscrição',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
