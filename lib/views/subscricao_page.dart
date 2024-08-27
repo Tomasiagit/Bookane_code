@@ -1,6 +1,8 @@
 import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 
+import 'components/metodos_pagamento.dart';
+
 class SubscricaoPage extends StatefulWidget {
   const SubscricaoPage({super.key});
 
@@ -35,105 +37,17 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                 children: [
                   Text(
                     textAlign: TextAlign.center,
-                    "Page uma subscricao para continuar a ler o seu livro em mãos",
+                    "Page uma subscrição para continuar a ter o seu livro em mãos",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
-            Row(
+            const Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const TipoSubcricao()));
-                    },
-                    child: Container(
-                      height: 140,
-                      width: 140,
-                      decoration: BoxDecoration(
-                        color: Colors.red, // Cor de fundo do Container
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Raio da borda do Container
-                        boxShadow: [
-                          BoxShadow(
-                            color:
-                                Colors.grey.withOpacity(0.5), // Cor da sombra
-                            spreadRadius: 5, // Espalhamento da sombra
-                            blurRadius: 7, // Raio do desfoque da sombra
-                            offset: Offset(0, 3), // Deslocamento da sombra
-                          ),
-                        ],
-                      ),
-                      //color: Colors.white70,
-                      child: const Column(
-                        //   crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    'Mpesa',
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    decoration: BoxDecoration(
-                      color:
-                          Colors.deepOrangeAccent, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
-                      ],
-                    ),
-                    //color: Colors.white70,
-                    child: const Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'Emola',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                Metodos_Pagamento(metodo: "Mpesa", color:Colors.red),
+                Metodos_Pagamento(metodo: "Emola", color:Colors.orange),
+
               ],
             ),
            const SizedBox(
@@ -141,86 +55,10 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
             ),
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
-                      ],
-                    ),
-                    //color: Colors.white70,
-                    child: const Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'paypol',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    //color: Colors.white70,
-                    child: Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'Transferencias Bancarias',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white, // Cor de fundo do Container
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Raio da borda do Container
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                          spreadRadius: 5, // Espalhamento da sombra
-                          blurRadius: 7, // Raio do desfoque da sombra
-                          offset: Offset(0, 3), // Deslocamento da sombra
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                Metodos_Pagamento(metodo: "Transferencias Bancarias", color:Colors.white),
+                Metodos_Pagamento(metodo: "paypol", color:Colors.blue),
+
+
               ],
             ),
           ]),

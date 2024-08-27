@@ -28,6 +28,7 @@ class _BooksPageState extends State<BooksPage> {
 
   @override
   Widget build(BuildContext context) {
+    String classe = widget.grade;
     return DefaultTabController(
       //initialIndex: 1, //optional, starts from 0, select the tab by default
       length: 1,
@@ -60,12 +61,12 @@ class _BooksPageState extends State<BooksPage> {
               ),
 
             ],
-            bottom: const TabBar(
+            bottom: TabBar(
               labelColor: Color.fromARGB(255, 254, 207, 0),
               indicatorColor: Color.fromARGB(255, 254, 207, 0),
               tabs: [
                 Tab(
-                  text: "12-classe",
+                  text: classe,
                 ),
               ],
             ),

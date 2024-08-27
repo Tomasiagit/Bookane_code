@@ -39,7 +39,7 @@ class FirebaseAuthService {
       //   maxWidth: double.infinity,
       // );
     } catch (e) {
-
+    print("error: $e");
     }
   }
 }

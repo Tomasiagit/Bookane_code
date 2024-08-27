@@ -1,5 +1,6 @@
 import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
 import 'package:bookane/provider.dart/login_provider.dart';
+import 'package:bookane/views/InfoPage.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:bookane/views/books_page.dart';
@@ -51,6 +52,22 @@ class _LoginPageState extends State<LoginPage>
         style: TextStyle(
           color:Color(0xFFFFFFFF)
         ),),
+        actions: [
+
+          IconButton(
+            icon: const Icon(Icons.info,
+              color: Colors.white,), // User icon
+            onPressed: () {
+              // Action when icon is pressed
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const InfoPage()),
+              );
+            },
+          ),
+
+        ],
       ),
       body: Stack(
         children: [

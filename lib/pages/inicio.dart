@@ -6,6 +6,8 @@ import 'package:bookane/views/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../views/components/card_classe.dart';
+
 class Inicio extends StatefulWidget {
   static const String routeName = '/Inicio';
   const Inicio({super.key});
@@ -182,143 +184,26 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
               style:
                   TextStyle(color: Color.fromARGB(255, 14, 3, 3), fontSize: 14),
             ),
-            Padding(
+           const Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 20,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return const BooksPage(
-                            grade: "12classe",
-                          );
-                        }),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.black,
-                      ),
-                      child: Column(
-                        children: const [
-                          Text(
-                            '12ª',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Classe',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
+                  CardClasse(grade: '12classe', ordinary:'12ª'),
+                  SizedBox(
                     width: 10,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return const BooksPage(
-                            grade: "11classe",
-                          );
-                        }),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.black,
-                      ),
-                      child: Column(
-                        children: const [
-                          Text(
-                            '11ª',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Classe',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
+                   CardClasse(grade: '11classe', ordinary:'11ª'),
+                  SizedBox(
                     width: 10,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return const BooksPage(
-                            grade: "10classe",
-                          );
-                        }),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.black,
-                      ),
-                      child: Column(
-                        children: const [
-                          Text(
-                            '10ª',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Classe',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
+                   CardClasse(grade: '10classe', ordinary:'10ª'),
+
+
+
+                   SizedBox(
                     width: 10,
                   ),
                 ],

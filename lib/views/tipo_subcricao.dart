@@ -36,7 +36,7 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
                 children: [
                   Text(
                     textAlign: TextAlign.center,
-                    "Escolha a subcricao da sua preferencia",
+                    "Escolha a subcrição da sua preferencia",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -45,27 +45,27 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              textAlign: TextAlign.center,
-              "Uma classe",
-            ),
+            // const Text(
+            //   textAlign: TextAlign.center,
+            //   "Uma classe",
+            // ),
             const Row(
               children: [
-                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
-                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
+                Pacotes(preco: "100 mts", duracao: "1 Mês"),
+                Pacotes(preco: "250 mts", duracao: "1 Trimestre"),
               ],
             ),
            const SizedBox(
               height: 10,
             ),
-           const  Text(
-              textAlign: TextAlign.center,
-              "Mais de uma Classe",
-            ),
+           // const  Text(
+           //    textAlign: TextAlign.center,
+           //    "Mais de uma Classe",
+           //  ),
             const Row(
               children: [
-                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
-                Pacotes(preco: "200 mts", duracao: "1 Semestre"),
+                Pacotes(preco: "750 mts", duracao: "1 Semestre"),
+                Pacotes(preco: "1500 mts", duracao: "1 Ano"),
               ],
             ),
           ]),

@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bookane/views/form_pagamento.dart';
 import 'package:flutter/material.dart';
 
-import '../subscricao_page.dart';
+import '../tipo_subcricao.dart';
 
-class Pacotes extends StatelessWidget {
-  final String preco, duracao;
-  const Pacotes({super.key, required this.preco, required this.duracao});
+class Metodos_Pagamento extends StatelessWidget {
+  final String metodo;
+  final Color color;
 
+  const Metodos_Pagamento({super.key, required this.metodo, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -17,21 +18,21 @@ class Pacotes extends StatelessWidget {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => const SubscricaoPage()));
+                  builder: (context) => const FormPagamento()));
         },
         child: Container(
           height: 140,
           width: 140,
           decoration: BoxDecoration(
-            color: Colors.white, // Cor de fundo do Container
+            color: color,
             borderRadius: BorderRadius.circular(
-                10.0), // Raio da borda do Container
+                10.0),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                spreadRadius: 5, // Espalhamento da sombra
-                blurRadius: 7, // Raio do desfoque da sombra
-                offset: Offset(0, 3), // Deslocamento da sombra
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
               ),
             ],
           ),
@@ -44,16 +45,11 @@ class Pacotes extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text(duracao,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
                       Text(
-                        preco,
+                        metodo,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF0C60A0)),
+                        style:
+                        TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
