@@ -1,4 +1,6 @@
+import 'package:bookane/firebase_implementation/manager_user_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseAuthService {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -6,12 +8,21 @@ class FirebaseAuthService {
 
   Future<bool>authentication(String email, String password) async {
      try{
+
        UserCredential _userCredential =
        await _firebaseAuth.signInWithEmailAndPassword(
          email: email,
          password: password,
        );
-       print(_userCredential);
+       User? user = _userCredential.user;
+
+       print("USER: $user");
+       if(user != null){
+         ManagerUSerData managerUSerData = ManagerUSerData();
+         managerUSerData.saveUserData(user);
+         print('Bem Vindo ao BOOKANE ');
+       //  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Bem Vindo ao BOOKANE')));
+       }
        return true;
      }catch(e){
        print('Erro ao autenticar: $e');

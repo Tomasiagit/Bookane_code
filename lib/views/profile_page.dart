@@ -1,4 +1,6 @@
 //import 'package:bookane/provider.dart/profile_provider.dart';
+import 'package:bookane/firebase_implementation/manager_user_data.dart';
+import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/views/subscricao_page.dart';
 import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  ManagerUSerData _managerUSerData = ManagerUSerData();
   @override
   Widget build(BuildContext context) {
     // var userProfile = Provider.of<ProfileProvider>(context).getProfile();
@@ -32,6 +35,43 @@ class _ProfilePageState extends State<ProfilePage> {
           title: const Text('Perfil',
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+            actions: [
+
+              IconButton(
+                icon: Icon(Icons.logout,
+                  color: Colors.white,),
+                onPressed: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text('Logout'),
+                      content: const Text('Tem certeza que pretende sair da aplicação?'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _managerUSerData.clearUserData();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Inicio()),
+                            );
+
+                          },
+                          child: const Text('Sair'),
+                        ),
+                      ],
+                    ),
+                  );
+
+
+                },
+              ),
+
+            ]
           // actions: [IconButton(onPressed: () {}, icon: const Icon())],
         ),
         body: Center(
@@ -48,14 +88,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           width: 1, color: Color.fromARGB(255, 130, 129, 129)),
                       shape: BoxShape.circle,
                       //image: profile!.logo != nullC
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage('assets/meuperfil2.jpeg'),
                           fit: BoxFit.cover)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 70,
                 ),
-                Card(
+               const Card(
                   elevation: 2,
                   shadowColor: Colors.black,
                   child: ListTile(
@@ -71,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     //  trailing: Icon(Icons.more_vert),
                   ),
                 ),
-                Card(
+                const Card(
                   elevation: 2,
                   shadowColor: Colors.black,
                   child: ListTile(
@@ -87,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     //  trailing: Icon(Icons.more_vert),
                   ),
                 ),
-                Card(
+                const Card(
                   elevation: 2,
                   shadowColor: Colors.black,
                   child: ListTile(
@@ -103,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     //  trailing: Icon(Icons.more_vert),
                   ),
                 ),
-                Card(
+                const Card(
                   elevation: 2,
                   shadowColor: Colors.black,
                   child: ListTile(

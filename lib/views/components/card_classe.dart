@@ -1,3 +1,4 @@
+import 'package:bookane/firebase_implementation/manager_user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,14 +11,26 @@ class CardClasse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) {
-            return  BooksPage(
-              grade: grade,
-            );
-          }),
-        );
+      onTap: () async{
+
+        ManagerUSerData _managerUserData = ManagerUSerData();
+        bool userAlreadyLoggedIn = await _managerUserData.isUserLoggedIn();
+
+        if(!userAlreadyLoggedIn){
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Faça login para continuar"),
+            ),
+          );
+        }else{
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) {
+              return  BooksPage(
+                grade: grade,
+              );
+            }),
+          );
+        }
       },
       child: Container(
         padding: const EdgeInsets.all(20),
