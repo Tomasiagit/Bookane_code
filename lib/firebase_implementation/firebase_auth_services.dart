@@ -1,9 +1,13 @@
 import 'package:bookane/firebase_implementation/manager_user_data.dart';
+import 'package:bookane/models/user_model.dart';
+import 'package:bookane/views/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class FirebaseAuthService {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore db = FirebaseFirestore.instance;
 
 
   Future<bool>authentication(String email, String password) async {
@@ -53,4 +57,56 @@ class FirebaseAuthService {
     print("error: $e");
     }
   }
+
+  Future<void> registarUser(String nome, String email, String classe, String senha, BuildContext context)async {
+
+
+    try{
+      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: senha);
+      User? user = userCredential.user;
+
+      if(user != null){
+        UserModel userModel = UserModel(
+          uid: user.uid,
+          nome: nome,
+          email: user.email,
+          classe: classe,
+        );
+        await db.collection('utilizador').doc(user.uid).set(userModel.toMap());
+        print("Usuário registrado e dados adicionais salvos com sucesso!");
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),  // Substitua HomePage com a sua tela
+        );
+      }
+
+    } on FirebaseAuthException catch (e) {
+      print("Erro ao registrar o usuário: ${e.message}");
+    }
+    catch(e){
+      print("Erro: $e");
+    }
+  }
+
+  Future<UserModel?> getUserProfile(String? uid) async {
+    try {
+
+      DocumentSnapshot doc = await FirebaseFirestore.instance
+          .collection('utilizador')
+          .doc(uid)
+          .get();
+
+      if (doc.exists) {
+
+        return UserModel.fromJson(doc.data() as Map<String, dynamic>);
+      } else {
+        print('user não encontrado');
+        return null;
+      }
+    } catch (e) {
+      print('Erro ao buscar dados do user: $e');
+      return null;
+    }
+  }
+
 }

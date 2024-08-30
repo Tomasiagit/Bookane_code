@@ -1,16 +1,20 @@
 //import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/firebase_implementation/manager_user_data.dart';
+import 'package:bookane/models/user_model.dart';
 import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/views/subscricao_page.dart';
 import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
+import '../firebase_implementation/firebase_auth_services.dart';
 //import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   static const String routeName = '/ProfilePage';
-  const ProfilePage({super.key});
+  final String? uid;
+  const ProfilePage({super.key, this.uid});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -18,6 +22,25 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   ManagerUSerData _managerUSerData = ManagerUSerData();
+  FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  UserModel _userModel = UserModel();
+  bool isLoading = true;
+
+
+
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    UserModel? _userdata = await _firebaseAuthService.getUserProfile(widget.uid);
+    setState(() {
+      _userModel = _userdata!;
+      isLoading = false;  // Para controlar o carregamento
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // var userProfile = Provider.of<ProfileProvider>(context).getProfile();
@@ -74,7 +97,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ]
           // actions: [IconButton(onPressed: () {}, icon: const Icon())],
         ),
-        body: Center(
+        body: isLoading
+            ? Center(child: CircularProgressIndicator())  // Exibe um loading enquanto carrega
+            : _userModel == null
+            ? Center(child: Text('Usuário não encontrado'))
+            : Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -95,23 +122,23 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 70,
                 ),
-               const Card(
+                Card(
                   elevation: 2,
                   shadowColor: Colors.black,
                   child: ListTile(
                     //   leading: Icon(Icons.person),
                     title: Text(
-                      'Nome',
+                      'Nome:',
                     ),
                     subtitle: Text(
-                      'Tomasia Guambe',
+                      ' ${_userModel?.nome}',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                     ),
                     //  trailing: Icon(Icons.more_vert),
                   ),
                 ),
-                const Card(
+                 Card(
                   elevation: 2,
                   shadowColor: Colors.black,
                   child: ListTile(
@@ -120,14 +147,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       'Email',
                     ),
                     subtitle: Text(
-                      'tomasiaguambe17@gmail.com',
+                      ' ${_userModel?.email}',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                     ),
                     //  trailing: Icon(Icons.more_vert),
                   ),
                 ),
-                const Card(
+                Card(
                   elevation: 2,
                   shadowColor: Colors.black,
                   child: ListTile(
@@ -136,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       'Classe',
                     ),
                     subtitle: Text(
-                      '12-classe',
+                      ' ${_userModel?.classe}',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                     ),
@@ -182,130 +209,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         )
-        // body: SingleChildScrollView(
-        //   child: FutureBuilder(
-        //     future: userProfile,
-        //     builder: (context, snapshot) {
 
-        //         if(snapshot.hasData){
-        //            String classe = '';
-        //            var userData = snapshot.data!;
-
-        //            if(userData.classId! == '1'){
-        //             classe = '8-classe';
-
-        //            } else if(userData.classId! == '2' ){
-        //              classe = '9-classe';
-
-        //            }else if(userData.classId! == '3'){
-        //              classe = '10-classe';
-
-        //            }else if(userData.classId! == '4'){
-        //              classe = '11-classe';
-
-        //            }else {
-        //              classe = '12-classe';
-
-        //            }
-
-        //            return Container(
-        //       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-        //       child: Column(
-        //         children: [
-
-        //           /// -- IMAGE
-        //           Stack(
-        //             children: [
-        //               SizedBox(
-        //                 width: 250,
-        //                 height: 200,
-        //                 child: ClipRRect(
-        //                     borderRadius: BorderRadius.circular(100),
-        //                     child: const Image(
-        //                       image: AssetImage('assets/reader_girl.png'),
-
-        //                     width: 100,
-        //                     height: 300,)),
-        //               ),
-
-        //             ],
-        //           ),
-        //           Center(
-        //             child: Container(
-        //               decoration: BoxDecoration(
-        //                 border: Border.all(color: const Color(0xFF0C60A0)),
-        //                 borderRadius: BorderRadius.circular(10)
-
-        //               ),
-
-        //               width: 500,
-        //               height: 350,
-        //               child: Column(
-        //                 mainAxisAlignment: MainAxisAlignment.center,
-        //               children: [
-
-        //                      Text('Nome', style: TextStyle(fontWeight: FontWeight.normal)),
-        //                              const SizedBox(height: 5),
-        //                             SizedBox(
-        //               width: 300,
-        //               height: 40,
-        //               child: ElevatedButton(
-        //                 onPressed: (){},
-        //                 style: ElevatedButton.styleFrom(
-        //                     backgroundColor: const Color(0xFF0C60A0), side: BorderSide.none, shape: const StadiumBorder()),
-        //               child:  Text(userData.fullName!, style: TextStyle(color: Colors.white)),
-        //               )
-        //               ),
-        //                const SizedBox(height: 20),
-
-        //               const Text('Email', style: TextStyle(fontWeight: FontWeight.normal)),
-        //               const SizedBox(height: 5),
-        //                             SizedBox(
-        //               width: 300,
-        //               height: 40,
-        //               child: ElevatedButton(
-        //                 onPressed: (){},
-        //                 // => Get.to(() => const UpdateProfileScreen()
-
-        //                 style: ElevatedButton.styleFrom(
-        //                     backgroundColor: const Color(0xFF0C60A0), side: BorderSide.none, shape: const StadiumBorder()),
-        //               child: Text(userData.email!, style: TextStyle(color: Colors.white)),
-        //               )
-        //               ),
-        //               const SizedBox(height: 20),
-        //                Text('classe', style: TextStyle(fontWeight: FontWeight.normal)),
-        //                             SizedBox(
-        //               width: 300,
-        //               child: ElevatedButton(
-        //                 onPressed: (){},
-        //                 // => Get.to(() => const UpdateProfileScreen()
-
-        //                 style: ElevatedButton.styleFrom(
-        //                     backgroundColor: Color(0xFF0C60A0), side: BorderSide.none, shape: const StadiumBorder()),
-        //               child: Text(classe,
-
-        //                style: TextStyle(color: Colors.white)),
-        //               )
-        //               ),
-
-        //               ],
-        //                             )
-        //             ,),
-        //           )
-
-        //         ]),
-        //       );
-
-        //         }
-
-        //        return const Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-
-        //     },
-
-        //   ),
-        //   ),
         );
   }
 }

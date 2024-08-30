@@ -1,5 +1,6 @@
 import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
+import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
 //import 'package:flutter/foundation.dart';
@@ -24,22 +25,25 @@ class _RegisterPageState extends State<RegisterPage> {
   final _repetirSenhaControler = TextEditingController();
   final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   late List<DropdownMenuItem<ListOfClass>> _countryItems;
-  late ListOfClass _selectedClass;
+
+  bool inLoading = false;
+  String? _selectedClass;
+  List<String> listOfClasses = ['10classe', '11classe', '12classe'];
   // late List<DropdownMenuItem<ListOfClass>> _classItems;
   // late ListOfClass _selectedClass;
 
   @override
   void initState() {
-    List<ListOfClass> countries = ListOfClass.allClass;
-    _countryItems = countries.map<DropdownMenuItem<ListOfClass>>(
-      (ListOfClass classOption) {
-        return DropdownMenuItem<ListOfClass>(
-          value: classOption,
-          child: Text(classOption.classes),
-        );
-      },
-    ).toList();
-    _selectedClass = countries[0];
+    // List<ListOfClass> countries = ListOfClass.allClass;
+    // _countryItems = countries.map<DropdownMenuItem<ListOfClass>>(
+    //   (ListOfClass classOption) {
+    //     return DropdownMenuItem<ListOfClass>(
+    //       value: classOption,
+    //       child: Text(classOption.classes),
+    //     );
+    //   },
+    // ).toList();
+    // _selectedClass = countries[0];
     super.initState();
   }
 
@@ -116,20 +120,40 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    child: DropdownButton<ListOfClass>(
-                      isExpanded: true,
-                      underline: const SizedBox(),
-                      //icon: SvgPicture.asset("assets/icons/dropdown.svg"),
-                      value: _selectedClass,
-                      items: _countryItems,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selectedClass = newValue!;
-                        });
-                      },
-                    ),
+
+                  SizedBox(height: 8), // Espaçamento entre o label e o dropdown
+                  // DropdownButton
+                  DropdownButton<String>(
+                    isExpanded: true,
+                    value: _selectedClass,
+                    hint: Text('Selecione a classe'),
+                    items: listOfClasses.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _selectedClass = newValue;
+                        print('Selected class: $_selectedClass');
+                      });
+                    },
                   ),
+                  // Container(
+                  //   child: DropdownButton<ListOfClass>(
+                  //     isExpanded: true,
+                  //     underline: const SizedBox(),
+                  //     //icon: SvgPicture.asset("assets/icons/dropdown.svg"),
+                  //     value: _selectedClass,
+                  //     items: _countryItems,
+                  //     onChanged: (newValue) {
+                  //       setState(() {
+                  //         _selectedClass = newValue!;
+                  //       });
+                  //     },
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -192,49 +216,33 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 50,
                           width: widthSize <= 500 ? widthSize : 400,
                           child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (_formkey.currentState!.validate()) {
-                                  // Provider.of<CadastrarProvider>(context,
-                                  //         listen: false)
-                                  //     .cadastrarFunction(
-                                  //         _nomeController.text,
-                                  //         _emailController.text,
-                                  //         _selectedClass.toString(),
-                                  //         _repetirSenhaControler.text)
-                                  _firebaseAuthService.createUser(
-                                      _nomeController.text,
-                                      _selectedClass.toString(),
+                                  setState(() {
+                                    inLoading = true;
+                                  });
 
-                                      _emailController.text,
-                                      _repetirSenhaControler.text)
-                                      .then((value) =>   Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const ProfilePage())));
-                                  // {
-                                  //   if (value) {
-                                  //     Navigator.push(
-                                  //       context,
-                                  //       MaterialPageRoute(
-                                  //           builder: (context) =>
-                                  //               const ProfilePage()),
-                                  //     );
-                                  //   } else {
-                                  //     _senhaController.clear();
-                                  //     _repetirSenhaControler.clear();
-                                  //     ScaffoldMessenger.of(context)
-                                  //         .showSnackBar(SnackBar(
-                                  //       content: const Text('Erro ao registar'),
-                                  //       duration: const Duration(seconds: 3),
-                                  //       backgroundColor: Colors.redAccent,
-                                  //       action: SnackBarAction(
-                                  //         label: 'ok',
-                                  //         onPressed: () {},
-                                  //       ),
-                                  //     ));
-                                  //   }
-                                  // });
+                                  await Future.delayed(
+                                      Duration(seconds: 2));
+                               try{
+
+                                 _firebaseAuthService.registarUser(
+                                    _nomeController.text,
+                                   _emailController.text,
+                                     _selectedClass.toString(),
+                                   _senhaController.text,
+
+                                   context
+                                 );
+
+                               }catch(e){
+                                 ScaffoldMessenger.of(context).showSnackBar(
+                                   SnackBar(
+                                     content: Text("Erro ao Cadastrar: $e"),
+                                   ),
+                                 );
+
+                               }
                                 }
                               },
                               style: ElevatedButton.styleFrom(

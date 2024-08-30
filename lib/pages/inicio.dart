@@ -57,55 +57,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
             const SizedBox(
               height: 20,
             ),
-            // CarouselSlider(
-            //   items: [
-            //     Container(
-            //       margin: const EdgeInsets.all(6.0),
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(8.0),
-            //         image: const DecorationImage(
-            //           image: AssetImage('assets/imagem1.png'),
-            //           fit: BoxFit.fitHeight,
-            //         ),
-            //       ),
-            //     ),
-            //     Container(
-            //       margin: const EdgeInsets.all(6.0),
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(8.0),
-            //         image: const DecorationImage(
-            //           image: AssetImage(
-            //             'assets/imagem2.png',
-            //           ),
-            //           fit: BoxFit.fitHeight,
-            //         ),
-            //       ),
-            //     ),
-            //     Container(
-            //         margin: const EdgeInsets.all(6.0),
-            //         decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(8.0),
-            //             image: const DecorationImage(
-            //               image: AssetImage('assets/imagem3.png'),
-            //               fit: BoxFit.fitHeight,
-            //             ))),
-            //   ],
-            //   options: CarouselOptions(
-            //     height: 190,
-            //     aspectRatio: 16 / 9,
-            //     viewportFraction: 0.8,
-            //     initialPage: 0,
-            //     enableInfiniteScroll: true,
-            //     reverse: false,
-            //     autoPlay: true,
-            //     autoPlayInterval: Duration(seconds: 3),
-            //     autoPlayAnimationDuration: Duration(milliseconds: 800),
-            //     autoPlayCurve: Curves.fastOutSlowIn,
-            //     enlargeCenterPage: true,
-            //     enlargeFactor: 0.3,
-            //     scrollDirection: Axis.horizontal,
-            //   ),
-            // ),
+
         Expanded(
 
           child: SizedBox(
