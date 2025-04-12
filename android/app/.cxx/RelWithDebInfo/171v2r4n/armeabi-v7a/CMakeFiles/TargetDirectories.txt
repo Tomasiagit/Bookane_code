@@ -1,0 +1,2 @@
+/Users/air/Mobile Apps/Bookane_code/android/app/.cxx/RelWithDebInfo/171v2r4n/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/air/Mobile Apps/Bookane_code/android/app/.cxx/RelWithDebInfo/171v2r4n/armeabi-v7a/CMakeFiles/rebuild_cache.dir
