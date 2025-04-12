@@ -5,6 +5,7 @@ import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 import '../views/components/card_classe.dart';
 
@@ -38,11 +39,13 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
   }
 
   @override
-  void dispose() {
+  void dispose() async{
    // _controller.dispose();
     super.dispose();
+    await DefaultCacheManager().emptyCache();
     _pageViewController.dispose();
     _tabController.dispose();
+
   }
 
   @override

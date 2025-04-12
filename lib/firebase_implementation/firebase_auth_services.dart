@@ -109,4 +109,25 @@ class FirebaseAuthService {
     }
   }
 
+  Future<bool> resetPasswd(String email) async{
+
+    try{
+
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return true;
+
+    }on FirebaseAuthException catch (e) {
+      print('Erro: ${e.message}');
+      return false;
+
+    }
+    catch(e){
+      print('Erro ao enviar email: $e');
+      return false;
+
+    }
+
+
+  }
+
 }

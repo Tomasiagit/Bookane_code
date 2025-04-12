@@ -30,6 +30,7 @@ class _LoginPageState extends State<LoginPage>
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+
   }
 
   @override
@@ -165,6 +166,7 @@ class _LoginPageState extends State<LoginPage>
                                 width: widthSize <= 500 ? widthSize : 400,
                                 child: ElevatedButton(
                                     onPressed: () async {
+
                                       if (_formkey.currentState!.validate()) {
                                         setState(() {
                                           inLoading = true;

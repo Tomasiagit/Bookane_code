@@ -1,4 +1,7 @@
+import 'package:bookane/views/login_page.dart';
 import 'package:flutter/material.dart';
+
+import '../firebase_implementation/firebase_auth_services.dart';
 //import 'package:flutter/src/widgets/container.dart';
 
 class RecuperarUserPage extends StatefulWidget {
@@ -11,7 +14,9 @@ class RecuperarUserPage extends StatefulWidget {
 
 class RecuperarUserPageState extends State<RecuperarUserPage> {
   final _emailController = TextEditingController();
-  //final _formkey = GlobalKey<FormState>();
+  final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  final _formkey = GlobalKey<FormState>();
+  bool inLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +83,42 @@ class RecuperarUserPageState extends State<RecuperarUserPage> {
                 height: 50,
                 width: widthSize >= 500 ? widthSize : 200,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+
+                    if (_formkey.currentState!.validate()) {
+                      setState(() {
+                        inLoading = true;
+                      });
+                      await Future.delayed(
+                          Duration(seconds: 2));
+
+                      try{
+                        bool success = await _firebaseAuthService.resetPasswd(
+                          _emailController.text.toString(),
+
+                        );
+
+                        if(success){
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const LoginPage()));
+                        }
+                      }catch(e){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("$e"),
+                          ),
+                        );
+                      }
+                      setState(() {
+                        inLoading = false;
+                      });
+                    }
+
+
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF0C60A0),
                   ),
@@ -96,3 +136,5 @@ class RecuperarUserPageState extends State<RecuperarUserPage> {
     );
   }
 }
+
+

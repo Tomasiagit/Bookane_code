@@ -32,6 +32,7 @@ class BookItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
+
                 child: CachedNetworkImage(
               fit: BoxFit.cover,
               // width: double.infinity,
@@ -41,8 +42,13 @@ class BookItem extends StatelessWidget {
                   color: Color(0xFF0C60A0),
                 ),
               ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            )),
+              errorWidget: (context, url, error) {
+                print("Error loading image: $error");
+                return Icon(Icons.error);
+              } ,
+            )
+
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 2,
