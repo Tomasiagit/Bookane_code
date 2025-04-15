@@ -49,6 +49,7 @@ class BookItem extends StatelessWidget {
             )
 
             ),
+            
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 2,

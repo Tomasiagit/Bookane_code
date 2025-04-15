@@ -36,7 +36,7 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
                 children: [
                   Text(
                     textAlign: TextAlign.center,
-                    "Escolha a subcrição da sua preferencia",
+                    "Escolha a subcrição da sua preferência",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],

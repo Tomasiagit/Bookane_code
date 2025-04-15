@@ -97,11 +97,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ]
           // actions: [IconButton(onPressed: () {}, icon: const Icon())],
         ),
-        body: isLoading
-            ? Center(child: CircularProgressIndicator())  // Exibe um loading enquanto carrega
-            : _userModel == null
-            ? Center(child: Text('Usuário não encontrado'))
-            : Center(
+        body:
+        // isLoading
+        //     ? Center(child: CircularProgressIndicator())  // Exibe um loading enquanto carrega
+        //     : _userModel == null
+        //     ? Center(child: Text('Usuário não encontrado'))
+        //     :
+        Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -131,7 +133,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       'Nome:',
                     ),
                     subtitle: Text(
-                      ' ${_userModel?.nome}',
+                      //' ${_userModel?.nome}',
+                      'Tomasia Guambe',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                     ),
@@ -147,7 +150,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       'Email',
                     ),
                     subtitle: Text(
-                      ' ${_userModel?.email}',
+                     // ' ${_userModel?.email}',
+                      'tomasia.guambe@gmail.com',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                     ),
@@ -161,9 +165,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     //   leading: Icon(Icons.person),
                     title: Text(
                       'Classe',
+
                     ),
                     subtitle: Text(
-                      ' ${_userModel?.classe}',
+                    //  ' ${_userModel?.classe}',
+                      '12 Classe',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                     ),
