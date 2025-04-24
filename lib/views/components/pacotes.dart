@@ -53,7 +53,7 @@ class Pacotes extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF0C60A0)),
+                            color: Color(0xFF01243D)),
                       ),
                     ],
                   ),
