@@ -75,7 +75,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                         image: const DecorationImage(
-                          image: AssetImage('assets/imagem1.png'),
+                          image: AssetImage('assets/nobackground.png'),
                           fit: BoxFit.fitHeight,
                         ),
                       ),

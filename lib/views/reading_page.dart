@@ -7,26 +7,71 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 class ReadingPage extends StatefulWidget {
   static const String routeName = '/ReadingPage';
   final String? pdfPath;
+
   const ReadingPage({super.key, required this.pdfPath});
+
 
   @override
   State<ReadingPage> createState() => _ReadingPageState();
 }
 
+
+
+
 class _ReadingPageState extends State<ReadingPage> {
+  final PdfViewerController _pdfViewerController = PdfViewerController();
+  final TextEditingController _searchController = TextEditingController();
+  late PdfTextSearchResult _searchResult;
+
+
+  void initState() {
+    _searchResult = PdfTextSearchResult();
+    super.initState();
+  }
+
+  void _search(String text) {
+    _searchResult = _pdfViewerController.searchText(text);
+    _searchResult.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Foco...",
-          style: TextStyle(color: Colors.white),
+        title: TextField(
+          controller: _searchController,
+          decoration: InputDecoration(
+            hintText: 'Search...',
+              hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
+
+            suffixIcon: IconButton(
+              icon: Icon(Icons.search,
+                color: Colors.white
+              ),
+              onPressed: () => _search(_searchController.text),
+            ),
+          ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.arrow_upward,
+                color: Colors.white),
+            onPressed: () => _searchResult.previousInstance(),
+          ),
+          IconButton(
+            icon: Icon(Icons.arrow_downward,
+                color: Colors.white),
+            onPressed: () => _searchResult.nextInstance(),
+          ),
+        ],
         automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: SfPdfViewer.network('${widget.pdfPath}'),
+      body: SfPdfViewer.network('${widget.pdfPath}',
+          controller: _pdfViewerController),
       //Stack(
       //    children: <Widget>[
       //     PDFView(
