@@ -21,7 +21,10 @@ class ReadingPage extends StatefulWidget {
 class _ReadingPageState extends State<ReadingPage> {
   final PdfViewerController _pdfViewerController = PdfViewerController();
   final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _pageInputController = TextEditingController();
   late PdfTextSearchResult _searchResult;
+  int _currentPage = 1;
+  int _totalPages = 0;
 
 
   void initState() {
@@ -34,6 +37,18 @@ class _ReadingPageState extends State<ReadingPage> {
     _searchResult.addListener(() {
       setState(() {});
     });
+  }
+
+  void _goToPage() {
+    final input = int.tryParse(_pageInputController.text);
+    if (input != null && input >= 1 && input <= _totalPages) {
+      _pdfViewerController.jumpToPage(input);
+      FocusScope.of(context).unfocus();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Número de página inválido')),
+      );
+    }
   }
 
   @override
@@ -70,8 +85,66 @@ class _ReadingPageState extends State<ReadingPage> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: SfPdfViewer.network('${widget.pdfPath}',
-          controller: _pdfViewerController),
+      body: Column(
+        children: [
+          Expanded(
+            child: SfPdfViewer.network('${widget.pdfPath}',
+                controller: _pdfViewerController,
+              onDocumentLoaded: (details) {
+                setState(() {
+                  _totalPages = details.document.pages.count;
+                });
+              },
+              onPageChanged: (details) {
+                setState(() {
+                  _currentPage = details.newPageNumber;
+                });
+              },
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.chevron_left),
+                  onPressed: _currentPage > 1
+                      ? () => _pdfViewerController.jumpToPage(_currentPage - 1)
+                      : null,
+                ),
+                IconButton(
+                  icon: Icon(Icons.chevron_right),
+                  onPressed: _currentPage < _totalPages
+                      ? () => _pdfViewerController.jumpToPage(_currentPage + 1)
+                      : null,
+                ),
+                Spacer(),
+                Text('Ir para página:'),
+                SizedBox(width: 8),
+                Container(
+                  width: 60,
+                  child: TextField(
+                    controller: _pageInputController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: _goToPage,
+                  child: Text('Ir'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       //Stack(
       //    children: <Widget>[
       //     PDFView(

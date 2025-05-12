@@ -22,6 +22,8 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
   late PageController _pageViewController;
   late TabController _tabController;
   int _currentPageIndex = 0;
+  int _currentPage = 1;
+  int _totalPages = 0;
   final bookController = Get.put(BooksController());
 
   @override
