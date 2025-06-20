@@ -14,7 +14,7 @@ class CadastrarProvider extends ChangeNotifier {
 
   Future<bool> cadastrarFunction(
       String name, String email, String classe, String password) async {
-    var url = Uri.parse(BaseApiUrl.cadastrarApiUrl);
+    var url = Uri.parse(BaseApiUrl.cadastrarUserApiUrl);
 
     var response = await http.post(url, body: {
       'full_name': name,

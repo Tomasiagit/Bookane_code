@@ -20,11 +20,12 @@ class ReadingPage extends StatefulWidget {
 
 class _ReadingPageState extends State<ReadingPage> {
   final PdfViewerController _pdfViewerController = PdfViewerController();
-  final TextEditingController _searchController = TextEditingController();
+ // final TextEditingController _searchController = TextEditingController();
   final TextEditingController _pageInputController = TextEditingController();
   late PdfTextSearchResult _searchResult;
   int _currentPage = 1;
   int _totalPages = 0;
+  bool _showControls = true;
 
 
   void initState() {
@@ -51,12 +52,14 @@ class _ReadingPageState extends State<ReadingPage> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
-          controller: _searchController,
+          controller: _pageInputController,
           decoration: InputDecoration(
             hintText: 'Search...',
               hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
@@ -65,7 +68,7 @@ class _ReadingPageState extends State<ReadingPage> {
               icon: Icon(Icons.search,
                 color: Colors.white
               ),
-              onPressed: () => _search(_searchController.text),
+              onPressed: () => _search(_pageInputController.text),
             ),
           ),
         ),
@@ -85,10 +88,16 @@ class _ReadingPageState extends State<ReadingPage> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SfPdfViewer.network('${widget.pdfPath}',
+      body:  GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          setState(() {
+            _showControls = !_showControls;
+          });
+        },
+        child: Stack(
+          children: [
+            SfPdfViewer.network('${widget.pdfPath}',
                 controller: _pdfViewerController,
               onDocumentLoaded: (details) {
                 setState(() {
@@ -101,49 +110,57 @@ class _ReadingPageState extends State<ReadingPage> {
                 });
               },
             ),
-          ),
-          Container(
-            color: Colors.grey[200],
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.chevron_left),
-                  onPressed: _currentPage > 1
-                      ? () => _pdfViewerController.jumpToPage(_currentPage - 1)
-                      : null,
-                ),
-                IconButton(
-                  icon: Icon(Icons.chevron_right),
-                  onPressed: _currentPage < _totalPages
-                      ? () => _pdfViewerController.jumpToPage(_currentPage + 1)
-                      : null,
-                ),
-                Spacer(),
-                Text('Ir para página:'),
-                SizedBox(width: 8),
-                Container(
-                  width: 60,
-                  child: TextField(
-                    controller: _pageInputController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                      border: OutlineInputBorder(),
-                    ),
+            if (_showControls)
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  color: Colors.black.withOpacity(0.7),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.chevron_left, color: Colors.white),
+                        onPressed: _currentPage > 1
+                            ? () => _pdfViewerController.jumpToPage(_currentPage - 1)
+                            : null,
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.chevron_right, color: Colors.white),
+                        onPressed: _currentPage < _totalPages
+                            ? () => _pdfViewerController.jumpToPage(_currentPage + 1)
+                            : null,
+                      ),
+                      Spacer(),
+                      Text('Page:', style: TextStyle(color: Colors.white)),
+                      SizedBox(width: 8),
+                      SizedBox(
+                        width: 60,
+                        child: TextField(
+                          controller: _pageInputController,
+                          keyboardType: TextInputType.number,
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                            border: OutlineInputBorder(),
+                            hintText: 'Go',
+                            hintStyle: TextStyle(color: Colors.white60),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      ElevatedButton(
+                        onPressed: _goToPage,
+                        child: Text('Go'),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: _goToPage,
-                  child: Text('Ir'),
-                ),
-              ],
-            ),
-          ),
-        ],
+              ),
+          ],
+        ),
       ),
       //Stack(
       //    children: <Widget>[

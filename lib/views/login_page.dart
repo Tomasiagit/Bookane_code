@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  final userProvider = UserProvider();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
@@ -175,10 +176,11 @@ class _LoginPageState extends State<LoginPage>
                                             Duration(seconds: 2));
 
                                         try{
-                                          bool success = await _firebaseAuthService.authentication(
-                                            _emailController.text.toString(),
-                                            _passwordController.text.toString(),
-                                          );
+                                          // bool success = await _firebaseAuthService.authentication(
+                                          //   _emailController.text.toString(),
+                                          //   _passwordController.text.toString(),
+                                          // );
+                                          bool success = await userProvider.loginFunction(_emailController.text.toString(), _passwordController.text.toString());
 
                                           if(success){
                                             Navigator.pushReplacement(

@@ -5,10 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:bookane/api_controller/base_api_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginProvider extends ChangeNotifier {
+class UserProvider extends ChangeNotifier {
   String? _token;
+  // final _headers = {
+  //   HttpHeaders.acceptHeader: 'application/json',
+  // };
   final _headers = {
-    HttpHeaders.acceptHeader: 'application/json',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
   };
 
   Map<String, String> get _getHeaders {
