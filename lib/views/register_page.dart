@@ -1,5 +1,6 @@
 import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
+import 'package:bookane/provider.dart/user_provider.dart';
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
@@ -23,8 +24,9 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
   final _repetirSenhaControler = TextEditingController();
-  final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  //final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   late List<DropdownMenuItem<ListOfClass>> _countryItems;
+  final _userProvider = UserProvider();
 
   bool inLoading = false;
   String? _selectedClass;
@@ -123,23 +125,23 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   SizedBox(height: 8), // Espaçamento entre o label e o dropdown
                   // DropdownButton
-                  DropdownButton<String>(
-                    isExpanded: true,
-                    value: _selectedClass,
-                    hint: Text('Selecione a classe'),
-                    items: listOfClasses.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        _selectedClass = newValue;
-                        print('Selected class: $_selectedClass');
-                      });
-                    },
-                  ),
+                  // DropdownButton<String>(
+                  //   isExpanded: true,
+                  //   value: _selectedClass,
+                  //   hint: Text('Selecione a classe'),
+                  //   items: listOfClasses.map((String value) {
+                  //     return DropdownMenuItem<String>(
+                  //       value: value,
+                  //       child: Text(value),
+                  //     );
+                  //   }).toList(),
+                  //   onChanged: (newValue) {
+                  //     setState(() {
+                  //       _selectedClass = newValue;
+                  //       print('Selected class: $_selectedClass');
+                  //     });
+                  //   },
+                  // ),
                   // Container(
                   //   child: DropdownButton<ListOfClass>(
                   //     isExpanded: true,
@@ -226,19 +228,39 @@ class _RegisterPageState extends State<RegisterPage> {
                                       Duration(seconds: 2));
                                try{
 
-                                 _firebaseAuthService.registarUser(
-                                    _nomeController.text,
-                                   _emailController.text,
-                                     _selectedClass.toString(),
-                                   _senhaController.text,
+                                 // _firebaseAuthService.registarUser(
+                                 //    _nomeController.text,
+                                 //   _emailController.text,
+                                 //     _selectedClass.toString(),
+                                 //   _senhaController.text,
+                                 //
+                                 //   context
+                                 // );
+                                 bool success = await _userProvider.cadastrarFunction(
+                                     _nomeController.text,
+                                     _emailController.text,
+                                     _senhaController.text);
+                                 if(success){
+                                   ScaffoldMessenger.of(context).showSnackBar(
+                                     SnackBar(
+                                       content: Text("Cadastrou-se com sucesso!"),
+                                     ),
+                                   );
 
-                                   context
-                                 );
+
+                                 }else{
+                                   ScaffoldMessenger.of(context).showSnackBar(
+                                     SnackBar(
+                                       content: Text("Erro ao Cadastrar o utilizador!"),
+                                     ),
+                                   );
+
+                                 }
 
                                }catch(e){
                                  ScaffoldMessenger.of(context).showSnackBar(
                                    SnackBar(
-                                     content: Text("Erro ao Cadastrar: $e"),
+                                     content: Text("ERRO: $e"),
                                    ),
                                  );
 

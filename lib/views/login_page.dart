@@ -1,5 +1,5 @@
 import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
-import 'package:bookane/provider.dart/login_provider.dart';
+import 'package:bookane/provider.dart/user_provider.dart';
 import 'package:bookane/views/InfoPage.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
@@ -180,7 +180,9 @@ class _LoginPageState extends State<LoginPage>
                                           //   _emailController.text.toString(),
                                           //   _passwordController.text.toString(),
                                           // );
-                                          bool success = await userProvider.loginFunction(_emailController.text.toString(), _passwordController.text.toString());
+                                          bool success = await userProvider.loginFunction(
+                                              _emailController.text.toString(),
+                                              _passwordController.text.toString());
 
                                           if(success){
                                             Navigator.pushReplacement(
@@ -201,6 +203,7 @@ class _LoginPageState extends State<LoginPage>
                                           ScaffoldMessenger.of(context).showSnackBar(
                                             SnackBar(
                                               content: Text("Erro ao autenticar: $e"),
+
                                             ),
                                           );
                                         }

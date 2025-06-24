@@ -2,7 +2,7 @@ import 'package:bookane/components/menuNavbar.dart';
 import 'package:bookane/firebase_options.dart';
 import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/provider.dart/cadastro_provider.dart';
-import 'package:bookane/provider.dart/login_provider.dart';
+import 'package:bookane/provider.dart/user_provider.dart';
 import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/books_page.dart';
 //import 'package:bookane
