@@ -8,9 +8,9 @@ class BaseApiUrl {
   static const loginApiUrl = '$_baseApiUrl/login';
   static const cadastrarUserApiUrl = '$_baseApiUrl/users';
   static const visualizarUserApiUrl = '$_baseApiUrl/users';
-  static const apagarUserApiUrl = '$_baseApiUrl/users';
-  static const editarUserApiUrl = '$_baseApiUrl/users';
-  static const infoEstudanteApiUrl = '$_baseApiUrl/auth/me';
+ // static const apagarUserApiUrl = '$_baseApiUrl/users';
+ // static const editarUserApiUrl = '$_baseApiUrl/users';
+  static const dataUserApiUrl = '$_baseApiUrl/api/me';
   //_____________________Livro_Api______________________//
   static const mostrarLivrosApiUrl = '$_baseApiUrl/books';
 //_____________________Classe_Api______________________//

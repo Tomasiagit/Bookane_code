@@ -10,6 +10,7 @@ import 'package:bookane/views/books_page.dart';
 import 'package:bookane/views/home_page.dart';
 import 'package:bookane/views/init_page.dart';
 import 'package:bookane/views/login_page.dart';
+import 'package:bookane/views/overview_page.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         home: const Inicio(),
         routes: {
           InitPage.routeName: (context) => const InitPage(),
+          OverViewPage.routeName:(context) => const OverViewPage(),
           MenuNavBar.routeName: (context) => const MenuNavBar(),
           HomePage.routeName: (context) => const HomePage(),
           BooksPage.routeName: (context) => const BooksPage(grade: "12classe"),

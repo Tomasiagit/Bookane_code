@@ -58,35 +58,33 @@ class FirebaseAuthService {
     }
   }
 
-  Future<void> registarUser(String nome, String email, String classe, String senha, BuildContext context)async {
-
-
-    try{
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: senha);
-      User? user = userCredential.user;
-
-      if(user != null){
-        UserModel userModel = UserModel(
-          uid: user.uid,
-          nome: nome,
-          email: user.email,
-          classe: classe,
-        );
-        await db.collection('utilizador').doc(user.uid).set(userModel.toMap());
-        print("Usuário registrado e dados adicionais salvos com sucesso!");
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => LoginPage()),  // Substitua HomePage com a sua tela
-        );
-      }
-
-    } on FirebaseAuthException catch (e) {
-      print("Erro ao registrar o usuário: ${e.message}");
-    }
-    catch(e){
-      print("Erro: $e");
-    }
-  }
+  // Future<void> registarUser(String nome, String email, String classe, String senha, BuildContext context)async {
+  //   try{
+  //     UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: senha);
+  //     User? user = userCredential.user;
+  //
+  //     if(user != null){
+  //       UserModel userModel = UserModel(
+  //         uid: user.uid,
+  //         nome: nome,
+  //         email: user.email,
+  //         classe: classe,
+  //       );
+  //       await db.collection('utilizador').doc(user.uid).set(userModel.toMap());
+  //       print("Usuário registrado e dados adicionais salvos com sucesso!");
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => LoginPage()),  // Substitua HomePage com a sua tela
+  //       );
+  //     }
+  //
+  //   } on FirebaseAuthException catch (e) {
+  //     print("Erro ao registrar o usuário: ${e.message}");
+  //   }
+  //   catch(e){
+  //     print("Erro: $e");
+  //   }
+  // }
 
   Future<UserModel?> getUserProfile(String? uid) async {
     try {

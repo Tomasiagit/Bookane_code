@@ -11,6 +11,7 @@ class TipoSubcricao extends StatefulWidget {
 
 class _TipoSubcricaoState extends State<TipoSubcricao> {
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
