@@ -1,6 +1,7 @@
 import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
 import 'package:bookane/provider.dart/user_provider.dart';
 import 'package:bookane/views/InfoPage.dart';
+import 'package:bookane/views/overview_page.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:bookane/views/books_page.dart';
@@ -189,7 +190,7 @@ class _LoginPageState extends State<LoginPage>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                    const BooksPage(grade: "11classe")));
+                                                    const OverViewPage()));
 
 
                                           }else{

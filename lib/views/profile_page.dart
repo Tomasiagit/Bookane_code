@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../firebase_implementation/firebase_auth_services.dart';
+//import '../firebase_implementation/firebase_auth_services.dart';
 //import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -26,17 +26,53 @@ class _ProfilePageState extends State<ProfilePage> {
   // ManagerUSerData _managerUSerData = ManagerUSerData();
   // FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   // UserModel _userModel = UserModel();
-  late Future<Profile> profile;
-  bool isLoading = true;
   final userProvider = UserProvider();
+  late Future<Profile> futureprofile;
+  bool isLoading = true;
+
 
 
 
   void initState() {
     super.initState();
-   profile = userProvider.getProfile();
+    futureprofile = userProvider.getProfile();
     // _loadUserData();
   }
+
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(title: const Text('Meu Perfil')),
+  //     body: FutureBuilder<Profile>(
+  //       future: futureprofile,
+  //       builder: (context, snapshot) {
+  //         if (snapshot.connectionState == ConnectionState.waiting) {
+  //           return const Center(child: CircularProgressIndicator());
+  //         } else if (snapshot.hasError) {
+  //           return Center(
+  //             child: Text('Erro: ${snapshot.error}'),
+  //           );
+  //         } else if (snapshot.hasData) {
+  //           final profile = snapshot.data!;
+  //           return Padding(
+  //             padding: const EdgeInsets.all(16.0),
+  //             child: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 Text('ID: ${profile.id}', style: TextStyle(fontSize: 18)),
+  //                 SizedBox(height: 8),
+  //                 Text('Nome: ${profile.name}', style: TextStyle(fontSize: 18)),
+  //                 SizedBox(height: 8),
+  //                 Text('Email: ${profile.email}', style: TextStyle(fontSize: 18)),
+  //               ],
+  //             ),
+  //           );
+  //         } else {
+  //           return const Center(child: Text('Usuário não encontrado.'));
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 
   // Future<void> _loadUserData() async {
   //   UserModel? _userdata = await _firebaseAuthService.getUserProfile(widget.uid);
@@ -46,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
   //   });
   // }
 
-  @override
+  // @override
   Widget build(BuildContext context) {
     // var userProfile = Provider.of<ProfileProvider>(context).getProfile();
     var widthSize = MediaQuery.of(context).size.width;
@@ -103,131 +139,139 @@ class _ProfilePageState extends State<ProfilePage> {
           // actions: [IconButton(onPressed: () {}, icon: const Icon())],
         ),
         body: FutureBuilder<Profile>(
-          future: userProvider.getProfile(),
+          future: futureprofile,
           builder: (context, snapshot){
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             }
 
-            if (snapshot.hasError) {
+            else if (snapshot.hasError) {
               return Center(child: Text('Erro: ${snapshot.error}'));
+             // print(${snapshot.error);
+            }else if (snapshot.hasData){
+              final user = snapshot.data!;
+
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: widthSize / 2,
+                        height: hightSize / 4,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(26, 230, 95, 16),
+                            border: Border.all(
+                                width: 1, color: Color.fromARGB(255, 130, 129, 129)),
+                            shape: BoxShape.circle,
+                            //image: profile!.logo != nullC
+                            image: const DecorationImage(
+                                image: AssetImage('assets/meuperfil2.jpeg'),
+                                fit: BoxFit.cover)),
+                      ),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      Card(
+                        elevation: 2,
+                        shadowColor: Colors.black,
+                        child: ListTile(
+                          //   leading: Icon(Icons.person),
+                          title: Text(
+                            'Nome: ',
+                          ),
+                          subtitle: Text(
+                            //' ${_userModel?.nome}',
+                            '${user.name}',
+                            style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+                          ),
+                          //  trailing: Icon(Icons.more_vert),
+                        ),
+                      ),
+                      Card(
+                        elevation: 2,
+                        shadowColor: Colors.black,
+                        child: ListTile(
+                          //   leading: Icon(Icons.person),
+                          title: Text(
+                            'Email',
+                          ),
+                          subtitle: Text(
+                            // ' ${_userModel?.email}',
+                            '${user.email}',
+                            style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+                          ),
+                          //  trailing: Icon(Icons.more_vert),
+                        ),
+                      ),
+                      Card(
+                        elevation: 2,
+                        shadowColor: Colors.black,
+                        child: ListTile(
+                          //   leading: Icon(Icons.person),
+                          title: Text(
+                            'Classe',
+
+                          ),
+                          subtitle: Text(
+                            //  ' ${_userModel?.classe}',
+                            '12 Classe',
+                            style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+                          ),
+                          //  trailing: Icon(Icons.more_vert),
+                        ),
+                      ),
+                      const Card(
+                        elevation: 2,
+                        shadowColor: Colors.black,
+                        child: ListTile(
+                          //   leading: Icon(Icons.person),
+                          title: Text(
+                            'Subscrição',
+                          ),
+                          subtitle: Text(
+                            '6meses',
+                            style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+                          ),
+                          //  trailing: Icon(Icons.more_vert),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TipoSubcricao()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: const Color(0xFF0C60A0),
+                        ),
+                        child: Text(
+                          'Pagar Subscrição',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+
+            } else {
+              return const Center(child: Text('Usuário não encontrado.'));
             }
 
-            final user = snapshot.data!;
 
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Container(
-                      width: widthSize / 2,
-                      height: hightSize / 4,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(26, 230, 95, 16),
-                          border: Border.all(
-                              width: 1, color: Color.fromARGB(255, 130, 129, 129)),
-                          shape: BoxShape.circle,
-                          //image: profile!.logo != nullC
-                          image: const DecorationImage(
-                              image: AssetImage('assets/meuperfil2.jpeg'),
-                              fit: BoxFit.cover)),
-                    ),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    Card(
-                      elevation: 2,
-                      shadowColor: Colors.black,
-                      child: ListTile(
-                        //   leading: Icon(Icons.person),
-                        title: Text(
-                          'Nome: ',
-                        ),
-                        subtitle: Text(
-                          //' ${_userModel?.nome}',
-                          '${user.name}',
-                          style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                        //  trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      elevation: 2,
-                      shadowColor: Colors.black,
-                      child: ListTile(
-                        //   leading: Icon(Icons.person),
-                        title: Text(
-                          'Email',
-                        ),
-                        subtitle: Text(
-                          // ' ${_userModel?.email}',
-                          '${user.email}',
-                          style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                        //  trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      elevation: 2,
-                      shadowColor: Colors.black,
-                      child: ListTile(
-                        //   leading: Icon(Icons.person),
-                        title: Text(
-                          'Classe',
 
-                        ),
-                        subtitle: Text(
-                          //  ' ${_userModel?.classe}',
-                          '12 Classe',
-                          style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                        //  trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    const Card(
-                      elevation: 2,
-                      shadowColor: Colors.black,
-                      child: ListTile(
-                        //   leading: Icon(Icons.person),
-                        title: Text(
-                          'Subscrição',
-                        ),
-                        subtitle: Text(
-                          '6meses',
-                          style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                        //  trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const TipoSubcricao()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: const Color(0xFF0C60A0),
-                      ),
-                      child: Text(
-                        'Pagar Subscrição',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+
           }
 
         )
@@ -240,4 +284,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
         );
   }
+
+
+
+
+
 }
