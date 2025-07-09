@@ -1,5 +1,4 @@
 import 'package:bookane/firebase_implementation/firebase_auth_services.dart';
-import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/user_provider.dart';
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/profile_page.dart';

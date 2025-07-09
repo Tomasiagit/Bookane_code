@@ -2,6 +2,7 @@
 import 'package:bookane/provider.dart/books_controller.dart';
 import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/register_page.dart';
+import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -141,12 +142,12 @@ class _OverViewPageState extends State<OverViewPage> {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              'Encontre a sua Classe',
-              textAlign: TextAlign.start,
-              style:
-              TextStyle(color: Color.fromARGB(255, 14, 3, 3), fontSize: 14),
-            ),
+            // const Text(
+            //   'Encontre a sua Classe',
+            //   textAlign: TextAlign.start,
+            //   style:
+            //   TextStyle(color: Color.fromARGB(255, 14, 3, 3), fontSize: 14),
+            // ),
             const Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 20,
@@ -214,7 +215,7 @@ class _OverViewPageState extends State<OverViewPage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) {
-                      return const RegisterPage();
+                      return const TipoSubcricao();
                     }),
                   );
                 },

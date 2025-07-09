@@ -3,60 +3,78 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:bookane/api_controller/base_api_url.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/profile.dart';
 
 class UserProvider extends ChangeNotifier {
   String? _token;
+  bool _isLoading = true;
+
   String? get token => _token;
   bool get isLoggedIn => _token != null && _token!.isNotEmpty;
+  bool get isLoading => _isLoading;
 
   final _headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   };
 
-  // Future<void> getToken() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final tt = prefs.getString('user');
-  //   print('User::: $tt');
-  //   if (tt != null && tt.isNotEmpty) {
-  //     _token = tt;
-  //     notifyListeners();
-  //   }}
-  Future<void> loadToken()  async {
+  Future<void> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
-    _token = prefs.getString('token');
+    final storedToken = prefs.getString('user_token');
+    print("Token from SharedPreferences: $storedToken");
+    _token = storedToken;
+    _isLoading = false;
     notifyListeners();
   }
 
+  Future<void> saveLoginData(Map<String, dynamic> loginData) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = loginData['token'];
+
+    final t = await prefs.setString('user_token', token);
+    print("saved Token: $t");
+    // Save user as JSON string
+    final user = loginData['user'];
+    final userJson = jsonEncode(user);
+    print("saved userdata: $userJson");
+    await prefs.setString('user_data', userJson);
+    notifyListeners();
+
+    print(" Token and user saved to SharedPreferences");
+    print("Token: $token");
+  }
+
   Future<bool>loginFunction(String email, String password) async {
+    String? token;
     try {
       var url = Uri.parse(BaseApiUrl.loginApiUrl);
       var response = await http.post(url,
-          body: jsonEncode({
-            'email': email,
-            'password': password,
-          }),
-          headers: _headers);
+          body: jsonEncode({'email': email,'password': password}), headers: _headers);
 
       if (response.statusCode == 200) {
         var dataUSer = jsonDecode(response.body);
+        await saveLoginData(dataUSer);
+        //await prefs.setString('user_data', userJson);
+        //print("UserData: $");
 
-        print('Response: ${response.body}');
-        print('\n Data USER***$dataUSer');
+       //  print('Response: ${response.body}');
+       //  print('\n Data USER***$dataUSer');
+       //
+       // final prefs = await SharedPreferences.getInstance();
+       //  String userData = jsonEncode(user);
+       //  if (token != null && token!.isNotEmpty) {
+       //    await prefs.setString('user_data', user);
+       //  }
+       //  _token = token;
+       //  notifyListeners();
+       //  print('Token Response: $token');
 
-       final prefs = await SharedPreferences.getInstance();
-        if (token != null && token!.isNotEmpty) {
-          await prefs.setString('user', token!);
-        }
-        _token = token;
 
+        //var t = await prefs.setString("user", dataUSer['token']);
 
-        var t = await prefs.setString("user", dataUSer['token']);
-        notifyListeners();
-        print('Response: Token:::::::: $t');
 
         return true;
       } else {
@@ -100,12 +118,10 @@ class UserProvider extends ChangeNotifier {
 
 
 
-  Future<Profile>getProfile() async {
-    loadToken();
+  Future<Profile>getProfile(String token) async {
+
     print("TOKEN:::$token");
-    if(token == null){
-      throw Exception('Usuário não autenticado');
-    }
+
     var url = Uri.parse(BaseApiUrl.dataUserApiUrl);
     final response = await http.get(url, headers: {
      // 'Accept': 'application/json',
@@ -123,7 +139,7 @@ class UserProvider extends ChangeNotifier {
 
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('user');
+    await prefs.remove('user_data');
     _token = null;
     notifyListeners();
   }

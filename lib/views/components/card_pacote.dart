@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/pacote.dart';
 import '../subscricao_page.dart';
 
-class Pacotes extends StatelessWidget {
-  final String preco, duracao;
-  const Pacotes({super.key, required this.preco, required this.duracao});
+class CardPacote extends StatelessWidget {
+  final Pacote pacote;
+  const CardPacote({super.key, required this.pacote});
 
 
   @override
@@ -17,7 +18,10 @@ class Pacotes extends StatelessWidget {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => const SubscricaoPage()));
+                  builder: (context) => SubscricaoPage(
+                    duracao: pacote.duracao!,
+                    valor: pacote.valor!,
+                  )));
         },
         child: Container(
           height: 140,
@@ -44,12 +48,11 @@ class Pacotes extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text(duracao,
+                      Text("${pacote.duracao}",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        preco,
+                      Text("${ pacote.valor}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,

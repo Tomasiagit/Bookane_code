@@ -12,25 +12,32 @@ class CardClasse extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async{
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) {
+            return  BooksPage(
+              grade: grade,
+            );
+          }),
+        );
 
-        ManagerUSerData _managerUserData = ManagerUSerData();
-        bool userAlreadyLoggedIn = await _managerUserData.isUserLoggedIn();
-
-        if(!userAlreadyLoggedIn){
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Faça login para continuar"),
-            ),
-          );
-        }else{
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) {
-              return  BooksPage(
-                grade: grade,
-              );
-            }),
-          );
-        }
+        // ManagerUSerData _managerUserData = ManagerUSerData();
+        // bool userAlreadyLoggedIn = await _managerUserData.isUserLoggedIn();
+        //
+        // if(!userAlreadyLoggedIn){
+        //   ScaffoldMessenger.of(context).showSnackBar(
+        //     const SnackBar(
+        //       content: Text("Faça login para continuar"),
+        //     ),
+        //   );
+        // }else{
+        //   Navigator.of(context).push(
+        //     MaterialPageRoute(builder: (context) {
+        //       return  BooksPage(
+        //         grade: grade,
+        //       );
+        //     }),
+        //   );
+        // }
       },
       child: Container(
         padding: const EdgeInsets.all(20),

@@ -1,7 +1,6 @@
-
 import 'package:bookane/pages/inicio.dart';
+import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/overview_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,12 +13,16 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
 
-    if (userProvider.token == null) {
-      // Still loading token
+    // Show loading spinner while loading token
+    if (userProvider.isLoading) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
       );
     }
-    return userProvider.isLoggedIn ? const OverViewPage() : const Inicio();
+
+    // After token is loaded, decide what to show
+    return userProvider.isLoggedIn
+        ? const OverViewPage()
+        : const Inicio();
   }
 }

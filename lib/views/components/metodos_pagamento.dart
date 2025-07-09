@@ -6,8 +6,10 @@ import '../tipo_subcricao.dart';
 class Metodos_Pagamento extends StatelessWidget {
   final String metodo;
   final Color color;
+  final int valor;
+  final String duracao;
 
-  const Metodos_Pagamento({super.key, required this.metodo, required this.color});
+  const Metodos_Pagamento({super.key, required this.metodo, required this.color, required this.valor, required this.duracao});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,8 @@ class Metodos_Pagamento extends StatelessWidget {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => const FormPagamento()));
+                  builder: (context) => FormPagamento(
+                    valor: valor, duracao: duracao)));
         },
         child: Container(
           height: 140,
@@ -47,6 +50,12 @@ class Metodos_Pagamento extends StatelessWidget {
                     children: [
                       Text(
                         metodo,
+                        textAlign: TextAlign.center,
+                        style:
+                        TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "$valor",
                         textAlign: TextAlign.center,
                         style:
                         TextStyle(fontWeight: FontWeight.bold),

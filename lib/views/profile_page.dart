@@ -9,6 +9,8 @@ import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+
 
 //import '../firebase_implementation/firebase_auth_services.dart';
 //import 'package:provider/provider.dart';
@@ -26,16 +28,18 @@ class _ProfilePageState extends State<ProfilePage> {
   // ManagerUSerData _managerUSerData = ManagerUSerData();
   // FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   // UserModel _userModel = UserModel();
-  final userProvider = UserProvider();
+  //final userProvider = UserProvider();
   late Future<Profile> futureprofile;
   bool isLoading = true;
+  //final userProvider = Provider.of<UserProvider>(context, listen: false);
+  //final token = userProvider.token;
 
 
 
 
   void initState() {
     super.initState();
-    futureprofile = userProvider.getProfile();
+    //futureprofile = userProvider.getProfile(token);
     // _loadUserData();
   }
 
@@ -84,7 +88,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   // @override
   Widget build(BuildContext context) {
-    // var userProfile = Provider.of<ProfileProvider>(context).getProfile();
+    final token = Provider.of<UserProvider>(context, listen: false).token;
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     var widthSize = MediaQuery.of(context).size.width;
     var hightSize = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -138,9 +143,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ]
           // actions: [IconButton(onPressed: () {}, icon: const Icon())],
         ),
-        body: FutureBuilder<Profile>(
-          future: futureprofile,
+        //To do user_data
+        body: token ==null || token.isEmpty
+        ? Center(child: Text("Usuário não autenticado"))
+        :FutureBuilder<Profile>(
+          future: userProvider.getProfile(token),
           builder: (context, snapshot){
+
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());

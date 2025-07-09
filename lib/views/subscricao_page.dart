@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'components/metodos_pagamento.dart';
 
 class SubscricaoPage extends StatefulWidget {
-  const SubscricaoPage({super.key});
+  final String duracao;
+  final int valor;
+  const SubscricaoPage({super.key, required this.duracao, required this.valor});
 
   @override
   State<SubscricaoPage> createState() => _SubscricaoPageState();
@@ -20,9 +22,21 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
             color: Colors.white, //change your color here
           ),
           title: const Text(
-            'Metodos de Subscricao',
+            'Metodos de Pagamento',
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
+          leading: BackButton(
+            color: Color(0xFFFFFFFF),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TipoSubcricao()));
+
+             // print("back clic");
+            },
+          ),
+
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
@@ -37,16 +51,16 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
                 children: [
                   Text(
                     textAlign: TextAlign.center,
-                    "Page uma subscrição para continuar a ter o seu livro em mãos",
+                    "Page ${widget.valor} uma subscrição para continuar a ter o seu livro em mãos",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
-            const Row(
+             Row(
               children: [
-                Metodos_Pagamento(metodo: "Mpesa", color:Colors.red),
-                Metodos_Pagamento(metodo: "Emola", color:Colors.orange),
+                Metodos_Pagamento(metodo: "Mpesa", color:Colors.red, valor: widget.valor, duracao: widget.duracao),
+                Metodos_Pagamento(metodo: "Emola", color:Colors.orange, valor: widget.valor, duracao: widget.duracao),
 
               ],
             ),
@@ -55,8 +69,8 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
             ),
             Row(
               children: [
-                Metodos_Pagamento(metodo: "Transferencias Bancarias", color:Colors.white),
-                Metodos_Pagamento(metodo: "paypol", color:Colors.blue),
+                Metodos_Pagamento(metodo: "Transferencias Bancarias", color:Colors.white, valor: widget.valor, duracao: widget.duracao),
+                Metodos_Pagamento(metodo: "paypol", color:Colors.blue, valor: widget.valor, duracao: widget.duracao),
 
 
               ],

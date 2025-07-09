@@ -1,11 +1,9 @@
 import 'package:bookane/components/menuNavbar.dart';
 import 'package:bookane/firebase_options.dart';
 import 'package:bookane/pages/inicio.dart';
-import 'package:bookane/provider.dart/cadastro_provider.dart';
 import 'package:bookane/provider.dart/user_provider.dart';
-import 'package:bookane/provider.dart/profile_provider.dart';
 import 'package:bookane/views/books_page.dart';
-//import 'package:bookane
+
 ///views/register_page.dart';
 import 'package:bookane/views/home_page.dart';
 import 'package:bookane/views/init_page.dart';
@@ -13,6 +11,7 @@ import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/overview_page.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:bookane/views/recuperar_user_page.dart';
+import 'package:bookane/views/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -36,14 +35,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UserProvider>(
-          create: (context) => UserProvider(),
+          create: (context) => UserProvider()..loadToken(),
         ),
-        ChangeNotifierProvider<CadastrarProvider>(
-          create: (context) => CadastrarProvider(),
-        ),
-        ChangeNotifierProvider<ProfileProvider>(
-          create: (context) => ProfileProvider(),
-        ),
+
+
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -51,7 +46,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Poppins',
         ),
-        home: const Inicio(),
+        home: const SplashScreen(),
         routes: {
           InitPage.routeName: (context) => const InitPage(),
           OverViewPage.routeName:(context) => const OverViewPage(),

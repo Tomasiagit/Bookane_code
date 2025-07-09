@@ -1,9 +1,12 @@
 import 'package:bookane/provider.dart/mpesa_api.dart';
+import 'package:bookane/views/overview_page.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class FormPagamento extends StatefulWidget {
-  const FormPagamento({Key? key}) : super(key: key);
+  final String duracao;
+  final int valor;
+  const FormPagamento({Key? key,  required this.duracao, required this.valor}) : super(key: key);
 
   @override
   State<FormPagamento> createState() => _FormPagamentoState();
@@ -51,8 +54,8 @@ class _FormPagamentoState extends State<FormPagamento> {
                           fontWeight: FontWeight.bold,
                           fontSize: 30),
                     ),
-                    const Text(
-                      'Valor: 100 mts',
+                    Text(
+                      'Valor: ${widget.valor}',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Color(0xFF0C60A0),
@@ -116,7 +119,7 @@ class _FormPagamentoState extends State<FormPagamento> {
 
                                     try{
                                       bool success = await _mpesaApi.mpesaApiFuction(
-                                        valor,
+                                        widget.valor,
                                         _telefoneController.text.toString(),
                                       );
 
@@ -125,6 +128,13 @@ class _FormPagamentoState extends State<FormPagamento> {
                                           const SnackBar(
                                             content: Text("Pagamento com sucesso"),
                                           ),
+                                        );
+                                        //To do fater pagameno sucesso
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const OverViewPage()),
                                         );
 
 

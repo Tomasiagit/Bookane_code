@@ -16,6 +16,7 @@ class BaseApiUrl {
 //_____________________Classe_Api______________________//
 //_____________________Disciplina_Api______________________//
 //_____________________Pacote_Api______________________//
-//_____________________Pagamento_Api______________________//
+//_____________________Pagamentos_Api______________________//
+  static const mostrarPacotesApiUrl = '$_baseApiUrl/pacotes';
 
 }
