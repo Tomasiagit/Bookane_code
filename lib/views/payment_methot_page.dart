@@ -1,18 +1,20 @@
 import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 
-import 'components/metodos_pagamento.dart';
+import 'components/card_metodos_pagamento.dart';
 
-class SubscricaoPage extends StatefulWidget {
+class PaymentMethodPage extends StatefulWidget {
   final String duracao;
   final int valor;
-  const SubscricaoPage({super.key, required this.duracao, required this.valor});
+  final int idpacote;
+  final int idclasse;
+  const PaymentMethodPage({super.key, required this.duracao, required this.valor, required this.idpacote, required this.idclasse});
 
   @override
-  State<SubscricaoPage> createState() => _SubscricaoPageState();
+  State<PaymentMethodPage> createState() => _PaymentMethodPageState();
 }
 
-class _SubscricaoPageState extends State<SubscricaoPage> {
+class _PaymentMethodPageState extends State<PaymentMethodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,8 +61,8 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
             ),
              Row(
               children: [
-                Metodos_Pagamento(metodo: "Mpesa", color:Colors.red, valor: widget.valor, duracao: widget.duracao),
-                Metodos_Pagamento(metodo: "Emola", color:Colors.orange, valor: widget.valor, duracao: widget.duracao),
+                CardMetodosPagamento(metodo: "Mpesa", color:Colors.red, valor: widget.valor, duracao: widget.duracao, idPacote:  widget.idpacote, idClasse:  widget.idclasse),
+                CardMetodosPagamento(metodo: "Emola", color:Colors.orange, valor: widget.valor, duracao: widget.duracao,  idPacote:  widget.idpacote, idClasse:  widget.idclasse),
 
               ],
             ),
@@ -69,8 +71,8 @@ class _SubscricaoPageState extends State<SubscricaoPage> {
             ),
             Row(
               children: [
-                Metodos_Pagamento(metodo: "Transferencias Bancarias", color:Colors.white, valor: widget.valor, duracao: widget.duracao),
-                Metodos_Pagamento(metodo: "paypol", color:Colors.blue, valor: widget.valor, duracao: widget.duracao),
+                CardMetodosPagamento(metodo: "Transferencias Bancarias", color:Colors.white, valor: widget.valor, duracao: widget.duracao,idPacote:  widget.idpacote, idClasse:  widget.idclasse),
+                CardMetodosPagamento(metodo: "paypol", color:Colors.blue, valor: widget.valor, duracao: widget.duracao, idPacote:  widget.idpacote, idClasse:  widget.idclasse),
 
 
               ],

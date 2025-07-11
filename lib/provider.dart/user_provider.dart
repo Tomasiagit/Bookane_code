@@ -33,11 +33,12 @@ class UserProvider extends ChangeNotifier {
   Future<void> saveLoginData(Map<String, dynamic> loginData) async {
     final prefs = await SharedPreferences.getInstance();
     final token = loginData['token'];
+    final user = loginData['user'];
 
     final t = await prefs.setString('user_token', token);
     print("saved Token: $t");
     // Save user as JSON string
-    final user = loginData['user'];
+
     final userJson = jsonEncode(user);
     print("saved userdata: $userJson");
     await prefs.setString('user_data', userJson);
@@ -111,7 +112,9 @@ class UserProvider extends ChangeNotifier {
     }
   catch(e){
   print("O Erro: $e");
-  return false;
+  return false;  // await prefs.remove('user_token');
+    // _token = null;
+    // notifyListeners();
 
   }
 }
@@ -121,6 +124,7 @@ class UserProvider extends ChangeNotifier {
   Future<Profile>getProfile(String token) async {
 
     print("TOKEN:::$token");
+    final prefs = await SharedPreferences.getInstance();
 
     var url = Uri.parse(BaseApiUrl.dataUserApiUrl);
     final response = await http.get(url, headers: {
@@ -131,6 +135,9 @@ class UserProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       print("RESPONSE:${response.body}");
       return Profile.fromJson(jsonDecode(response.body));
+    }else if(response.statusCode == 401){
+      return Profile.fromJson('Por favor, faça Login' as Map<String, dynamic>);
+      throw Exception('Erro  usuário: ${response.body}');
     } else {
       print("Failed to load Profile");
       throw Exception('Erro ao buscar usuário: ${response.body}');
@@ -140,6 +147,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('user_data');
+    await prefs.remove('user_token');
     _token = null;
     notifyListeners();
   }

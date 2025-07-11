@@ -4,19 +4,21 @@ class BaseApiUrl {
    static const _baseApiUrl = 'http://192.168.1.102:8000/api';
   //static const _baseApiUrl = 'https://bookane.dreamgate.co.mz/public/api';
 
-  //______________________User-Api_______________________//
+  //______________________BookaneApi_______________________//
   static const loginApiUrl = '$_baseApiUrl/login';
   static const cadastrarUserApiUrl = '$_baseApiUrl/users';
   static const visualizarUserApiUrl = '$_baseApiUrl/users';
- // static const apagarUserApiUrl = '$_baseApiUrl/users';
- // static const editarUserApiUrl = '$_baseApiUrl/users';
   static const dataUserApiUrl = '$_baseApiUrl/me';
-  //_____________________Livro_Api______________________//
+  //_____________________LivroApi______________________//
   static const mostrarLivrosApiUrl = '$_baseApiUrl/books';
-//_____________________Classe_Api______________________//
-//_____________________Disciplina_Api______________________//
-//_____________________Pacote_Api______________________//
-//_____________________Pagamentos_Api______________________//
+//_____________________ClasseApi______________________//
+  static const mostrarCLassesApiUrl = '$_baseApiUrl/classes';
+//_____________________DisciplinaApi______________________//
+//_____________________PacoteApi______________________//
   static const mostrarPacotesApiUrl = '$_baseApiUrl/pacotes';
+//_____________________PagamentosApi______________________//
+  static const fazerPagamentoApiUrl = '$_baseApiUrl/pagamentos';
+  static const verificarUserPagamentoApiUrl = '$_baseApiUrl/pagamentos/estado/';
+
 
 }

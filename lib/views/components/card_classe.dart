@@ -1,4 +1,6 @@
+
 import 'package:bookane/firebase_implementation/manager_user_data.dart';
+import 'package:bookane/provider.dart/payment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,15 +12,30 @@ class CardClasse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final paymentProvider = PaymentsProvider();
     return InkWell(
       onTap: () async{
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) {
-            return  BooksPage(
-              grade: grade,
-            );
-          }),
-        );
+        //To do
+       // bool success = await paymentProvider.VerifyPaymentUser(userID);
+       //
+       // if(success){
+       //   Navigator.of(context).push(
+       //     MaterialPageRoute(builder: (context) {
+       //       return  BooksPage(
+       //         grade: grade,
+       //       );
+       //     }),
+       //   );
+       // }else{
+       //
+       //   ScaffoldMessenger.of(context).showSnackBar(
+       //     const SnackBar(
+       //       content: Text("Por favor, pague uma subscrição"),
+       //     ),
+       //   );
+       // }
+       //
+
 
         // ManagerUSerData _managerUserData = ManagerUSerData();
         // bool userAlreadyLoggedIn = await _managerUserData.isUserLoggedIn();

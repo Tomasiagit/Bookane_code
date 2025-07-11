@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 import '../tipo_subcricao.dart';
 
-class Metodos_Pagamento extends StatelessWidget {
+class CardMetodosPagamento extends StatelessWidget {
   final String metodo;
   final Color color;
   final int valor;
   final String duracao;
+  final int idPacote;
+  final int idClasse;
 
-  const Metodos_Pagamento({super.key, required this.metodo, required this.color, required this.valor, required this.duracao});
+  const CardMetodosPagamento({super.key, required this.metodo, required this.color, required this.valor, required this.duracao, required this.idPacote, required this.idClasse});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class Metodos_Pagamento extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => FormPagamento(
-                    valor: valor, duracao: duracao)));
+                    valor: valor, duracao: duracao, classeid: idClasse, pacoteid: idPacote,)));
         },
         child: Container(
           height: 140,

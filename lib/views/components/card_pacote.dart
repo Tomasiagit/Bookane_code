@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/pacote.dart';
-import '../subscricao_page.dart';
+import '../payment_methot_page.dart';
 
 class CardPacote extends StatelessWidget {
   final Pacote pacote;
-  const CardPacote({super.key, required this.pacote});
+  final int? idClasse;
+  const CardPacote({super.key, required this.pacote, required this.idClasse});
 
 
   @override
@@ -15,13 +16,27 @@ class CardPacote extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => SubscricaoPage(
-                    duracao: pacote.duracao!,
-                    valor: pacote.valor!,
-                  )));
+
+          if(idClasse ==null){
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Selecione a Classe"),
+              ),
+            );
+          }else{
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PaymentMethodPage(
+                      duracao: pacote.duracao!,
+                      valor: pacote.valor!,
+                      idpacote: pacote.id!,
+                      idclasse: idClasse!,
+                    )));
+          }
+
+
+          print("PacodeID: ${pacote.id}");
         },
         child: Container(
           height: 140,

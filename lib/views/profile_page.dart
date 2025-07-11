@@ -4,7 +4,7 @@ import 'package:bookane/models/profile.dart';
 import 'package:bookane/models/user_model.dart';
 import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/provider.dart/user_provider.dart';
-import 'package:bookane/views/subscricao_page.dart';
+import 'package:bookane/views/payment_methot_page.dart';
 import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
   // ManagerUSerData _managerUSerData = ManagerUSerData();
   // FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   // UserModel _userModel = UserModel();
-  //final userProvider = UserProvider();
+  final userProvider = UserProvider();
   late Future<Profile> futureprofile;
   bool isLoading = true;
   //final userProvider = Provider.of<UserProvider>(context, listen: false);
@@ -121,8 +121,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: const Text('Cancel'),
                         ),
                         TextButton(
+
+                          //
                           onPressed: () {
                             //_managerUSerData.clearUserData();
+                            userProvider.logout();
                             Navigator.push(
                               context,
                               MaterialPageRoute(

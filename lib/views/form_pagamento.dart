@@ -1,4 +1,5 @@
 import 'package:bookane/provider.dart/mpesa_api.dart';
+import 'package:bookane/provider.dart/payment_provider.dart';
 import 'package:bookane/views/overview_page.dart';
 import 'package:bookane/views/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/material.dart';
 class FormPagamento extends StatefulWidget {
   final String duracao;
   final int valor;
-  const FormPagamento({Key? key,  required this.duracao, required this.valor}) : super(key: key);
+  final int pacoteid;
+  final int classeid;
+  const FormPagamento({Key? key,  required this.duracao, required this.valor, required this.pacoteid, required this.classeid}) : super(key: key);
 
   @override
   State<FormPagamento> createState() => _FormPagamentoState();
@@ -16,6 +19,7 @@ class _FormPagamentoState extends State<FormPagamento> {
   final _keyform = GlobalKey<FormState>();
   final _telefoneController = TextEditingController();
   final MpesaApi _mpesaApi = MpesaApi();
+  final payProvider = PaymentsProvider();
   bool inLoading = false;
   var valor = 100;
   @override
@@ -122,8 +126,13 @@ class _FormPagamentoState extends State<FormPagamento> {
                                         widget.valor,
                                         _telefoneController.text.toString(),
                                       );
+                                      print("Mpesa API returned: $success");
 
                                       if(success){
+
+                                      //To do
+                                        await payProvider.createPayment(widget.pacoteid, widget.classeid);
+                                        print("Create payment Pass");
                                         ScaffoldMessenger.of(context).showSnackBar(
                                           const SnackBar(
                                             content: Text("Pagamento com sucesso"),

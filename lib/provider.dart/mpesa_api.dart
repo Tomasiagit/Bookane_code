@@ -75,7 +75,7 @@ class MpesaApi {
         body: jsonData,
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201 ) {
         final responseBody = json.decode(response.body);
 
         if (responseBody["output_ResponseDesc"] ==
@@ -88,9 +88,11 @@ class MpesaApi {
           //   'status_code': response.statusCode,
           // };
         }
+        return true;
       } else {
-        throw Exception(
-            'Failed to process request. Status code: ${response.statusCode}');
+        print("statos Mpesa: ${response.statusCode}");
+       // throw Exception('Failed to process request. Status code: ${response.statusCode}');
+        return false;
       }
     } catch (e) {
       throw Exception('Request failed: $e');
