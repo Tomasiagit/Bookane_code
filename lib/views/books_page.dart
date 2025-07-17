@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 
 class BooksPage extends StatefulWidget {
   static const String routeName = '/BooksPage';
-  final String grade;
-  const BooksPage({super.key, required this.grade});
+  final String classe;
+  const BooksPage({super.key, required this.classe});
 
   @override
   State<BooksPage> createState() => _BooksPageState();
@@ -23,12 +23,12 @@ class _BooksPageState extends State<BooksPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    bookController.getAllBooks(widget.grade);
+    bookController.getAllBooks(widget.classe);
   }
 
   @override
   Widget build(BuildContext context) {
-    String classe = widget.grade;
+    String cls = widget.classe;
     return DefaultTabController(
       //initialIndex: 1, //optional, starts from 0, select the tab by default
       length: 1,
@@ -66,7 +66,7 @@ class _BooksPageState extends State<BooksPage> {
               indicatorColor: Color.fromARGB(255, 254, 207, 0),
               tabs: [
                 Tab(
-                  text: classe,
+                  text: cls,
                 ),
               ],
             ),

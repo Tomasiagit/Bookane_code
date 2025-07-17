@@ -76,6 +76,20 @@ class PaymentsProvider extends ChangeNotifier{
     }
   }
 
+  Future<Map<String, dynamic>?> getUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userData = prefs.getString('user_data');
+
+    if (userData != null) {
+      final Map<String, dynamic> userMap = jsonDecode(userData);
+      print("Dados do usuário: $userMap");
+
+     return userMap;
+    }else{
+     return null;
+    }
+  }
+
   Future<bool> createPayment(int pacoteID, int classeID) async {
     final prefs = await SharedPreferences.getInstance();
     final userData = prefs.getString('user_data');
@@ -120,23 +134,39 @@ class PaymentsProvider extends ChangeNotifier{
     }
   }
 
-  Future<bool> VerifyPaymentUser(int userID) async {
-    var url = Uri.parse('${BaseApiUrl.verificarUserPagamentoApiUrl}$userID');
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      return true;
+  Future<Map<String, dynamic>?>VerifyPaymentUser() async {
+    int userID = 0;
+    final userMap = await getUserData();
+    if (userMap != null && userMap.containsKey("id")) {
+      userID = userMap["id"];
+      print("User ID: $userID");
     } else {
-      return false;
+      print("No user data or ID not found.");
     }
 
     try{
+      var url = Uri.parse('${BaseApiUrl.verificarUserPagamentoApiUrl}$userID');
+      final response = await http.get(url);
 
-    }catch(e){
-      print("O Erro: $e");
-      return false;
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        print("User ID: $data");
+          if(data['status'] == true && data['pagamento'] !=null){
+              return data["pagamento"];
+          }else{
+            print("Pagamento não encontrado ou status falso.");
+            return null;
+          }
+      } else {
+        print("Erro de conexão: ${response.statusCode}");
+        return null;
+      }
+
+    } catch(e){
+      print("Erro: $e");
+      return null;
     }
+
   }
 
 

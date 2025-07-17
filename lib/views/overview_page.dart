@@ -155,15 +155,15 @@ class _OverViewPageState extends State<OverViewPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CardClasse(grade: '12classe', ordinary:'12ª'),
+                //  CardClasse(grade: '12classe', ordinary:'12ª'),
                   SizedBox(
                     width: 10,
                   ),
-                  CardClasse(grade: '11classe', ordinary:'11ª'),
+                //  CardClasse(grade: '11classe', ordinary:'11ª'),
                   SizedBox(
                     width: 10,
                   ),
-                  CardClasse(grade: '10classe', ordinary:'10ª'),
+                 // CardClasse(grade: '10classe', ordinary:'10ª'),
 
 
 

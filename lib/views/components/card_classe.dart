@@ -3,38 +3,52 @@ import 'package:bookane/firebase_implementation/manager_user_data.dart';
 import 'package:bookane/provider.dart/payment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../books_page.dart';
 
 class CardClasse extends StatelessWidget {
-  final String grade, ordinary;
-  const CardClasse({super.key, required this.grade, required this.ordinary});
+ // final String grade, ordinary;
+ // final int iduser, idClasse;
+
+  const CardClasse({super.key});
 
   @override
   Widget build(BuildContext context) {
     final paymentProvider = PaymentsProvider();
+
     return InkWell(
       onTap: () async{
-        //To do
-       // bool success = await paymentProvider.VerifyPaymentUser(userID);
-       //
-       // if(success){
-       //   Navigator.of(context).push(
-       //     MaterialPageRoute(builder: (context) {
-       //       return  BooksPage(
-       //         grade: grade,
-       //       );
-       //     }),
-       //   );
-       // }else{
-       //
-       //   ScaffoldMessenger.of(context).showSnackBar(
-       //     const SnackBar(
-       //       content: Text("Por favor, pague uma subscrição"),
-       //     ),
-       //   );
-       // }
-       //
+       final pagamento = await paymentProvider.VerifyPaymentUser();
+
+       if (pagamento != null) {
+         // print("Pagamento ativo: ${pagamento["estado"]}");
+         // print("Pacote: ${pagamento["pacote_id"]}");
+         // print("Data de Início: ${pagamento["data_inicio"]}");
+
+         if(pagamento != null && pagamento["estado"] == "activo"){
+
+
+           Navigator.of(context).push(
+             MaterialPageRoute(builder: (context) {
+               return  BooksPage(
+
+                 classe: pagamento["classe"],
+               );
+             }),
+           );
+         }
+       } else {
+         print("Nenhum pagamento encontrado.");
+         ScaffoldMessenger.of(context).showSnackBar(
+           const SnackBar(
+             content: Text("Por favor, pague ou atualize a subscrição"),
+           ),
+         );
+       }
+
+
+
 
 
         // ManagerUSerData _managerUserData = ManagerUSerData();
@@ -64,14 +78,14 @@ class CardClasse extends StatelessWidget {
         ),
         child: Column(
           children:  [
-            Text(
-              ordinary,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                // fontWeight: FontWeight.bold,
-              ),
-            ),
+            // Text(
+            // //  ordinary,
+            //   style: TextStyle(
+            //     color: Colors.white,
+            //     fontSize: 18,
+            //     // fontWeight: FontWeight.bold,
+            //   ),
+            // ),
             SizedBox(
               height: 10,
             ),

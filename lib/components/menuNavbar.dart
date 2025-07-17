@@ -23,9 +23,9 @@ class _MenuNavBarState extends State<MenuNavBar> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const BooksPage(
-      grade: "12classe",
-    ),
+    // const BooksPage(
+    //   grade: "12classe",
+    // ),
     const ProfilePage()
   ];
 

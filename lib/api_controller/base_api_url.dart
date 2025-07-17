@@ -1,7 +1,8 @@
 import 'package:http/http.dart' as http;
 
 class BaseApiUrl {
-   static const _baseApiUrl = 'http://192.168.1.102:8000/api';
+  static const _baseApiUrl = 'http://192.168.1.102:8000/api';
+   //static const _baseApiUrl = 'http://127.0.0.1:8000/api';
   //static const _baseApiUrl = 'https://bookane.dreamgate.co.mz/public/api';
 
   //______________________BookaneApi_______________________//
