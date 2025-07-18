@@ -8,14 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../books_page.dart';
 
 class CardClasse extends StatelessWidget {
- // final String grade, ordinary;
- // final int iduser, idClasse;
+  final String cls, ordinary;
+ //final int iduser, idClasse;
 
-  const CardClasse({super.key});
+  const CardClasse({super.key, required this.cls, required this.ordinary });
 
   @override
   Widget build(BuildContext context) {
     final paymentProvider = PaymentsProvider();
+    String clas = cls ;
 
     return InkWell(
       onTap: () async{
@@ -27,16 +28,28 @@ class CardClasse extends StatelessWidget {
          // print("Data de Início: ${pagamento["data_inicio"]}");
 
          if(pagamento != null && pagamento["estado"] == "activo"){
+           if(pagamento["classe"] != clas){
+             print("Nenhum pagamento encontrado.");
+             ScaffoldMessenger.of(context).showSnackBar(
+               const SnackBar(
+                 content: Text("Não tem subscricão activa para está classe."),
+               ),
+             );
+           }else{
+             int IDclasse = pagamento["classe_id"];
+             String classe = pagamento["classe"];
+             print("A classe: $classe e o id: $IDclasse");
+             Navigator.of(context).push(
+               MaterialPageRoute(builder: (context) {
+                 return  BooksPage(
+                   classe: classe, classe_id: IDclasse,
+                 );
+               }),
+             );
+
+           }
 
 
-           Navigator.of(context).push(
-             MaterialPageRoute(builder: (context) {
-               return  BooksPage(
-
-                 classe: pagamento["classe"],
-               );
-             }),
-           );
          }
        } else {
          print("Nenhum pagamento encontrado.");
@@ -78,14 +91,14 @@ class CardClasse extends StatelessWidget {
         ),
         child: Column(
           children:  [
-            // Text(
-            // //  ordinary,
-            //   style: TextStyle(
-            //     color: Colors.white,
-            //     fontSize: 18,
-            //     // fontWeight: FontWeight.bold,
-            //   ),
-            // ),
+            Text(
+              ordinary,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                // fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(
               height: 10,
             ),
@@ -94,7 +107,7 @@ class CardClasse extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
-                // fontWeight: FontWeight.bold,
+                 fontWeight: FontWeight.bold,
               ),
             ),
           ],

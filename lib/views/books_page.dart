@@ -12,7 +12,8 @@ import 'package:get/get.dart';
 class BooksPage extends StatefulWidget {
   static const String routeName = '/BooksPage';
   final String classe;
-  const BooksPage({super.key, required this.classe});
+  final int classe_id;
+  const BooksPage({super.key, required this.classe, required this.classe_id});
 
   @override
   State<BooksPage> createState() => _BooksPageState();
@@ -23,7 +24,7 @@ class _BooksPageState extends State<BooksPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    bookController.getAllBooks(widget.classe);
+    bookController.fetchBooks(widget.classe);
   }
 
   @override
@@ -82,7 +83,7 @@ class _BooksPageState extends State<BooksPage> {
             itemCount: bookController.books.length,
             itemBuilder: (context, index) {
               var book = bookController.books[index];
-              return BookItem(book: book);
+              return BookItem(livro: book);
             },
           ),
         ),

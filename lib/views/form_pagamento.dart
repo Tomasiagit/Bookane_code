@@ -143,7 +143,7 @@ class _FormPagamentoState extends State<FormPagamento> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const OverViewPage()),
+                                              const OverViewPage(classe: "11-classe",)),
                                         );
 
 

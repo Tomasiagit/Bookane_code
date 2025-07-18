@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
 
     // After token is loaded, decide what to show
     return userProvider.isLoggedIn
-        ? const OverViewPage()
+        ? const OverViewPage(classe: "10-classe")
         : const Inicio();
   }
 }

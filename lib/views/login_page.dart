@@ -190,7 +190,7 @@ class _LoginPageState extends State<LoginPage>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                    const OverViewPage()));
+                                                    const OverViewPage(classe: "10-classe")));
 
 
                                           }else{

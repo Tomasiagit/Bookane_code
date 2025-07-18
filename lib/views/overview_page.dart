@@ -11,8 +11,10 @@ import '../views/components/card_classe.dart';
 
 
 class OverViewPage extends StatefulWidget {
+   final String classe;
+  // final int IDclasse;
   static const String routeName = '/OverViewPage';
-  const OverViewPage({super.key});
+  const OverViewPage({super.key, required this.classe});
 
   State<OverViewPage> createState() => _OverViewPageState();
 }
@@ -37,7 +39,7 @@ class _OverViewPageState extends State<OverViewPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     //  _controller = AnimationController(vsync: this);
-    bookController.getAllBooks("12classe");
+    bookController.getAllBooks(widget.classe);
   }
 
   @override
@@ -155,15 +157,15 @@ class _OverViewPageState extends State<OverViewPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                //  CardClasse(grade: '12classe', ordinary:'12ª'),
+                  CardClasse(cls: '12-classe', ordinary:'12ª'),
                   SizedBox(
                     width: 10,
                   ),
-                //  CardClasse(grade: '11classe', ordinary:'11ª'),
+                  CardClasse(cls: '11-classe', ordinary:'11ª'),
                   SizedBox(
                     width: 10,
                   ),
-                 // CardClasse(grade: '10classe', ordinary:'10ª'),
+                  CardClasse(cls: '10-classe', ordinary:'10ª'),
 
 
 

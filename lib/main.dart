@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         home: const SplashScreen(),
         routes: {
           InitPage.routeName: (context) => const InitPage(),
-          OverViewPage.routeName:(context) => const OverViewPage(),
+          OverViewPage.routeName:(context) => const OverViewPage(classe: "10-classe"),
           MenuNavBar.routeName: (context) => const MenuNavBar(),
           HomePage.routeName: (context) => const HomePage(),
           //BooksPage.routeName: (context) => const BooksPage(grade: "12classe"),

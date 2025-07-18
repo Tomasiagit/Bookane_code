@@ -10,6 +10,8 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import '../views/components/card_classe.dart';
 
 class Inicio extends StatefulWidget {
+  // final String classe;
+  // final int IDclasse;
   static const String routeName = '/Inicio';
   const Inicio({super.key});
 
@@ -37,7 +39,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
   void didChangeDependencies() {
     super.didChangeDependencies();
   //  _controller = AnimationController(vsync: this);
-    bookController.getAllBooks("12classe");
+   // bookController.getAllBooks(widget.classe, widget.IDclasse);
   }
 
   @override
