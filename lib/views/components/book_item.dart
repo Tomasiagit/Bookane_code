@@ -5,6 +5,7 @@ import 'package:bookane/views/reading_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../api_controller/base_api_url.dart';
 import '../../models/livro.dart';
 
 class BookItem extends StatelessWidget {
@@ -12,8 +13,12 @@ class BookItem extends StatelessWidget {
   final Livro livro;
   const BookItem({super.key, required this.livro});
 
+
+
   @override
   Widget build(BuildContext context) {
+    final _baseURL = BaseApiUrl();
+    String caminho = "storage/capas/1saCh84tmgAu9RtNSWJgucp5YeEe4TNCWWy30BEr.jpg";
     return Padding(
       padding: const EdgeInsets.only(
         left: 3,
@@ -22,12 +27,13 @@ class BookItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
          // String caminho = "${livro}storage/";
-          String caminho = "storage/capas/1saCh84tmgAu9RtNSWJgucp5YeEe4TNCWWy30BEr.jpg";
+          String caminho = "${BaseApiUrl.baseApiImage}${livro.capa}";
+          print("Caminho: $caminho");
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => ReadingPage(
-                pdfPath: livro.arquivo,
+                pdfPath: "${BaseApiUrl.baseApiImage}/${livro.arquivo}",
                 //  pdfPath: pdfpath
               ),
             ),
@@ -42,7 +48,8 @@ class BookItem extends StatelessWidget {
               fit: BoxFit.cover,
               // width: double.infinity,
              // imageUrl: book.bookImage.toString(),
-                  imageUrl: livro.capa.toString(),
+             //     imageUrl: livro.capa.toString(),
+                  imageUrl:"${BaseApiUrl.baseApiImage}/${livro.capa}",
               placeholder: (context, url) => Center(
                 child: CircularProgressIndicator(
                   color: Color(0xFF0C60A0),

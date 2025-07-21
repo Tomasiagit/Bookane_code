@@ -23,19 +23,19 @@ class CardClasse extends StatelessWidget {
        final pagamento = await paymentProvider.VerifyPaymentUser();
 
        if (pagamento != null) {
-         // print("Pagamento ativo: ${pagamento["estado"]}");
-         // print("Pacote: ${pagamento["pacote_id"]}");
-         // print("Data de Início: ${pagamento["data_inicio"]}");
 
-         if(pagamento != null && pagamento["estado"] == "activo"){
-           if(pagamento["classe"] != clas){
+
+         if(pagamento["estado"] != "activo" || pagamento["classe"] != clas ){
+
              print("Nenhum pagamento encontrado.");
              ScaffoldMessenger.of(context).showSnackBar(
                const SnackBar(
                  content: Text("Não tem subscricão activa para está classe."),
                ),
              );
-           }else{
+
+           }
+         else{
              int IDclasse = pagamento["classe_id"];
              String classe = pagamento["classe"];
              print("A classe: $classe e o id: $IDclasse");
@@ -46,12 +46,9 @@ class CardClasse extends StatelessWidget {
                  );
                }),
              );
-
            }
-
-
          }
-       } else {
+        else {
          print("Nenhum pagamento encontrado.");
          ScaffoldMessenger.of(context).showSnackBar(
            const SnackBar(

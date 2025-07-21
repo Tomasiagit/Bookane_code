@@ -128,7 +128,7 @@ class PaymentsProvider extends ChangeNotifier{
       }
     }
     catch(e){
-      print("O Erro: $e");
+      print("O Erro criar Pagamento:: $e");
       return false;
 
     }
@@ -163,7 +163,7 @@ class PaymentsProvider extends ChangeNotifier{
       }
 
     } catch(e){
-      print("Erro: $e");
+      print("Erro verificar pagamento: $e");
       return null;
     }
 

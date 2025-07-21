@@ -84,7 +84,7 @@ class UserProvider extends ChangeNotifier {
       }
     }
     catch (e) {
-      print("O Erro: $e");
+      print("O Erro ao Logar: $e");
     }
     return false;
   }
@@ -111,7 +111,7 @@ class UserProvider extends ChangeNotifier {
       }
     }
   catch(e){
-  print("O Erro: $e");
+  print("O Erro Cadastrar: $e");
   return false;  // await prefs.remove('user_token');
     // _token = null;
     // notifyListeners();
