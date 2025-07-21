@@ -125,23 +125,29 @@ class UserProvider extends ChangeNotifier {
 
     print("TOKEN:::$token");
     final prefs = await SharedPreferences.getInstance();
+      try{
+        var url = Uri.parse(BaseApiUrl.dataUserApiUrl);
+        final response = await http.get(url, headers: {
+          // 'Accept': 'application/json',
+          'Authorization': 'Bearer $token'
+        });
+        print("Token: $token");
+        if (response.statusCode == 200) {
+          print("RESPONSE:${response.body}");
+          final Map<String, dynamic> jsonData = jsonDecode(response.body);
+          return Profile.fromJson(jsonData);
+        }else if(response.statusCode == 401){
+          throw Exception('Por favor, faça Login');
+          throw Exception('Erro  usuário: ${response.body}');
+        } else {
+          print("Failed to load Profile");
+          throw Exception('Erro ao buscar usuário: ${response.body}');
+        }
 
-    var url = Uri.parse(BaseApiUrl.dataUserApiUrl);
-    final response = await http.get(url, headers: {
-     // 'Accept': 'application/json',
-      'Authorization': 'Bearer $token'
-    });
-    print("Token: $token");
-    if (response.statusCode == 200) {
-      print("RESPONSE:${response.body}");
-      return Profile.fromJson(jsonDecode(response.body));
-    }else if(response.statusCode == 401){
-      return Profile.fromJson('Por favor, faça Login' as Map<String, dynamic>);
-      throw Exception('Erro  usuário: ${response.body}');
-    } else {
-      print("Failed to load Profile");
-      throw Exception('Erro ao buscar usuário: ${response.body}');
-    }
+      }catch(e){
+        rethrow;
+      }
+
   }
 
   Future<void> logout() async {

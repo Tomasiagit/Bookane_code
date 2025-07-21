@@ -49,7 +49,7 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
           child: Column(children: [
             Text(
               textAlign: TextAlign.center,
-              "Escolha o Pacoteeee para a sua Subscrição",
+              "Escolha o pacote para a sua Subscrição",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Expanded(child:
