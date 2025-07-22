@@ -134,17 +134,28 @@ class UserProvider extends ChangeNotifier {
         print("Token: $token");
         if (response.statusCode == 200) {
           print("RESPONSE:${response.body}");
-          final Map<String, dynamic> jsonData = jsonDecode(response.body);
-          return Profile.fromJson(jsonData);
+          final datauser = prefs.getString('user_data');
+          print('User data: $datauser');
+          if(datauser != null){
+            final dataUserMap = jsonDecode(datauser);
+            return Profile.fromJson(dataUserMap);
+
+          }else{
+            print('No User found in sharedpresf');
+            throw Exception('No User found in sharedpresf');
+          }
+          //final Map<String, dynamic> jsonData = jsonDecode(response.body);
         }else if(response.statusCode == 401){
+          print("Exception: ${response.statusCode}");
           throw Exception('Por favor, faça Login');
           throw Exception('Erro  usuário: ${response.body}');
         } else {
-          print("Failed to load Profile");
+          print("Exception: ${response.body}");
           throw Exception('Erro ao buscar usuário: ${response.body}');
         }
 
       }catch(e){
+        print("Exception: $e");
         rethrow;
       }
 

@@ -4,7 +4,9 @@ import 'package:bookane/models/profile.dart';
 import 'package:bookane/models/user_model.dart';
 import 'package:bookane/pages/inicio.dart';
 import 'package:bookane/provider.dart/user_provider.dart';
+import 'package:bookane/views/login_page.dart';
 import 'package:bookane/views/payment_methot_page.dart';
+import 'package:bookane/views/register_page.dart';
 import 'package:bookane/views/tipo_subcricao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -31,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final userProvider = UserProvider();
   late Future<Profile> futureprofile;
   bool isLoading = true;
+  bool _isVisible = true;
   //final userProvider = Provider.of<UserProvider>(context, listen: false);
   //final token = userProvider.token;
 
@@ -148,7 +151,14 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         //To do user_data
         body: token ==null || token.isEmpty
-        ? Center(child: Text("Usuário não autenticado"))
+        ? Center(child: Chip(
+          label: const Text("Usuário não autenticado"),
+          backgroundColor: Color.fromARGB(26, 230, 219, 16),
+          onDeleted: (){
+            print("clossing");
+
+          },
+        ))
         :FutureBuilder<Profile>(
           future: userProvider.getProfile(token),
           builder: (context, snapshot){
@@ -159,7 +169,19 @@ class _ProfilePageState extends State<ProfilePage> {
             }
 
             else if (snapshot.hasError) {
-              return Center(child: Text('Erro: ${snapshot.error}'));
+              return Center(child: Chip(
+                label: const Text("Usuário não autenticado"),
+                backgroundColor: Color.fromARGB(26, 230, 219, 16),
+                onDeleted: (){
+                 // print("clossing");
+                  userProvider.logout();
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
+
+                },
+              ));
              // print(${snapshot.error);
             }else if (snapshot.hasData){
               final user = snapshot.data!;
@@ -278,7 +300,19 @@ class _ProfilePageState extends State<ProfilePage> {
               );
 
             } else {
-              return const Center(child: Text('Usuário não encontrado.'));
+              return  Center(child: Chip(
+                label: const Text("Utilizador não encontrado"),
+                backgroundColor: Color.fromARGB(26, 230, 219, 16),
+                onDeleted: (){
+                  // print("clossing");
+                  userProvider.logout();
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
+
+                },
+              ));
             }
 
 

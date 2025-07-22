@@ -151,6 +151,7 @@ class PaymentsProvider extends ChangeNotifier{
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         print("User ID: $data");
+        final prefs = await SharedPreferences.getInstance();
           if(data['status'] == true && data['pagamento'] !=null){
               return data["pagamento"];
           }else{
