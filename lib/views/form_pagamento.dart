@@ -59,23 +59,28 @@ class _FormPagamentoState extends State<FormPagamento> {
                           fontSize: 30),
                     ),
                     Text(
-                      'Valor: ${widget.valor}',
+                      'Valor: ${widget.valor} mts',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Color(0xFF0C60A0),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12),
-                    ),
+                        fontWeight: FontWeight.normal,
+                        fontSize: 18,
+                        fontFamily: 'Poppins',
+                      )),
                     const SizedBox(
                       height: 50,
                     ),
                     const Text(
                       'Informe o seu número Mpesa para pagar a sua subscrição.',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Color(0xFF0C60A0),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12),
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
+                          fontFamily: 'Poppins',
+                        ),
+                    //   style: TextStyle(
+                    //       color: Color(0xFF0C60A0),
+                    //       fontWeight: FontWeight.bold,
+                    //       fontSize: 12),
                     ),
                     const SizedBox(
                       height: 10,

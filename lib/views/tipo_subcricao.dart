@@ -49,8 +49,12 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
           child: Column(children: [
             Text(
               textAlign: TextAlign.center,
-              "Escolha o pacote para a sua Subscrição",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "Escolha a classe para a sua subscrição",
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                ),
             ),
             Expanded(child:
             FutureBuilder<List<Classe>>(future:  _classe , builder: (context, snapshot) {
@@ -93,13 +97,18 @@ class _TipoSubcricaoState extends State<TipoSubcricao> {
             ),
             ),
           const Padding(
+           // padding: const EdgeInsets.all(20),
               padding: const EdgeInsets.all(4.0),
               child: Column(
                 children: [
                   Text(
                     textAlign: TextAlign.center,
                     "Escolha o Pacote para a sua Subscrição",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                    ),
                   ),
                 ],
               ),

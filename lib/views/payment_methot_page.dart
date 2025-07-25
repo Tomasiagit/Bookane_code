@@ -53,8 +53,12 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                 children: [
                   Text(
                     textAlign: TextAlign.center,
-                    "Page ${widget.valor} uma subscrição para continuar a ter o seu livro em mãos",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    "Page ${widget.valor}mts de subscrição para continuar a ter o seu livro em mãos",
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                    ),
                   ),
                 ],
               ),

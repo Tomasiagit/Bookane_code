@@ -62,26 +62,31 @@ class _OverViewPageState extends State<OverViewPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
 
             Expanded(
 
               child: SizedBox(
-                height: 200.0,
+                height: 100.0,
                 child: PageView(
                     controller: _pageViewController,
                     onPageChanged: _handlePageViewChanged,
                     children: [
-
                       Container(
+                        height: 100,
+                        width: 100,
                         margin: const EdgeInsets.all(6.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
                           image: const DecorationImage(
+
                             image: AssetImage(
-                              'assets/imagem2.png',
+                              'assets/imagem2.png'
+                              ,
+
                             ),
+
                             fit: BoxFit.fitHeight,
                           ),
                         ),
@@ -142,7 +147,7 @@ class _OverViewPageState extends State<OverViewPage> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 5,
             ),
             // const Text(
             //   'Encontre a sua Classe',
@@ -223,6 +228,7 @@ class _OverViewPageState extends State<OverViewPage> {
                 },
                 // => Get.to(() => const UpdateProfileScreen()
                 style: OutlinedButton.styleFrom(
+                    foregroundColor: Color(0xD50B6394),
                   // backgroundColor: Color.fromARGB(255, 138, 133, 135),
                   // side: BorderSide.none,
                   shape: const StadiumBorder(),

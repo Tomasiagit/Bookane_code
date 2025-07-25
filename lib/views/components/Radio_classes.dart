@@ -19,9 +19,13 @@ class RadioClasses extends StatelessWidget {
       child: ListTile(
         leading: Icon(
           isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-          color: isSelected ? Colors.blue : Colors.grey,
+          color: isSelected ? Colors.blue : Colors.blue,
         ),
-        title: Text("${clas.classe}"),
+        title: Text("${clas.classe}",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black87)
+        ),
       ),
     );
   }

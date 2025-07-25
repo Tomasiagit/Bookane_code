@@ -13,7 +13,7 @@ class CardPacote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(15),
       child: InkWell(
         onTap: () {
 
@@ -39,12 +39,12 @@ class CardPacote extends StatelessWidget {
           print("PacodeID: ${pacote.id}");
         },
         child: Container(
-          height: 140,
-          width: 140,
+          height: 100,
+          width: 80,
           decoration: BoxDecoration(
-            color: Colors.white, // Cor de fundo do Container
+            color: Color(0xD50B6394), // Cor de fundo do Container
             borderRadius: BorderRadius.circular(
-                10.0), // Raio da borda do Container
+                10.0), // Raio da borda do Contair
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5), // Cor da sombra
@@ -65,13 +65,14 @@ class CardPacote extends StatelessWidget {
                     children: [
                       Text("${pacote.duracao}",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                        color: Colors.white),
                       ),
                       Text("${ pacote.valor}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF01243D)),
+                            color: Colors.white),
                       ),
                     ],
                   ),
