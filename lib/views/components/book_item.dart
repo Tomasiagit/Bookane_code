@@ -33,7 +33,7 @@ class BookItem extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => ReadingPage(
-                pdfPath: "${BaseApiUrl.baseApiImage}/${livro.arquivo}",
+                pdfPath: "${BaseApiUrl.baseApiImage}${livro.arquivo}",
                 //  pdfPath: pdfpath
               ),
             ),

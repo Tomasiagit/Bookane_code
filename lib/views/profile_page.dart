@@ -170,7 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
             else if (snapshot.hasError) {
               return Center(child: Chip(
-                label: const Text("Usuário não autenticado"),
+                label: const Text("Sessão expirada, por favor inicie a sessão."),
                 backgroundColor: Color.fromARGB(26, 230, 219, 16),
                 onDeleted: (){
                  // print("clossing");
@@ -193,7 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Container(
                         width: widthSize / 2,
-                        height: hightSize / 4,
+                        height: hightSize / 2.5,
                         decoration: BoxDecoration(
                             color: Color.fromARGB(26, 230, 95, 16),
                             border: Border.all(
@@ -248,11 +248,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           //   leading: Icon(Icons.person),
                           title: Text(
                             'Classe',
-
                           ),
                           subtitle: Text(
                             //  ' ${_userModel?.classe}',
-                            '12 Classe',
+                            '12-Classe',
                             style:
                             TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                           ),
@@ -268,7 +267,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             'Subscrição',
                           ),
                           subtitle: Text(
-                            '6meses',
+                            '1-Semestre',
                             style:
                             TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
                           ),
