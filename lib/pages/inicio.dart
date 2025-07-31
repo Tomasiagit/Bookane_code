@@ -150,21 +150,21 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  //CardClasse(grade: '12classe', ordinary:'12ª'),
+                  CardClasse(cls: '12-classe', ordinary:'12ª'),
                   SizedBox(
                     width: 10,
                   ),
-                   //CardClasse(grade: '11classe', ordinary:'11ª'),
+                  CardClasse(cls: '11-classe', ordinary:'11ª'),
                   SizedBox(
                     width: 10,
                   ),
-                   /////CardClasse(grade: '10classe', ordinary:'10ª'),
+                  CardClasse(cls: '10-classe', ordinary:'10ª'),
 
 
 
-                   SizedBox(
+                  SizedBox(
                     width: 10,
-                  ),
+                  )
                 ],
               ),
             ),

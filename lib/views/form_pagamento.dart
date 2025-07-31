@@ -136,20 +136,24 @@ class _FormPagamentoState extends State<FormPagamento> {
                                       if(success){
 
                                       //To do
-                                        await payProvider.createPayment(widget.pacoteid, widget.classeid);
+                                    await payProvider.createPayment(widget.pacoteid, widget.classeid);
+                                    // if(mpess){
+
+                                    //
+                                    // }
                                         print("Create payment Pass");
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          const SnackBar(
-                                            content: Text("Pagamento com sucesso"),
-                                          ),
-                                        );
+                                        // ScaffoldMessenger.of(context).showSnackBar(
+                                        //   const SnackBar(
+                                        //     content: Text("Pagamento com sucesso"),
+                                        //   ),
+                                        // );
                                         //To do fater pagameno sucesso
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                              const OverViewPage(classe: "11-classe",)),
-                                        );
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const OverViewPage(classe: "10-classe"))
+                                    );
 
 
                                       }else{

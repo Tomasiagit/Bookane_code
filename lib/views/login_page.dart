@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage>
                           child: TextFormField(
                             keyboardType: TextInputType.text,
                             controller: _passwordController,
-                            obscureText: false,
+                            obscureText: true,
                             decoration: const InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius:
